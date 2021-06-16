@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      husky_playpen.launch
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+
+  <arg name="laser_enabled" default="true"/>
+  <arg name="realsense_enabled" default="true"/>
+  <arg name="omnicamera_enabled" default="true"/>
+
+  <include file="$(find husky_gazebo)/launch/playpen.launch" />
+
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="realsense_enabled" value="$(arg realsense_enabled)"/>
+    <arg name="omnicamera_enabled" value="$(arg realsense_enabled)"/>
+  </include>
+
+  <include file="$(find husky_navigation)/launch/move_base_rtabmap.launch"/>
+  <group ns="rtabmap">
+
+    <!-- Use RGBD synchronization -->
+    <!-- Here is a general example using a standalone nodelet, 
+         but it is recommended to attach this nodelet to nodelet 
+         manager of the camera to avoid topic serialization -->
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_ros/rgbd_sync" output="screen">
+      <remap from="rgb/image"       to="/realsense/color/image_raw"/>
+      <remap from="depth/image"     to="/realsense/depth/image_rect_raw"/>
+      <remap from="rgb/camera_info" to="/realsense/color/camera_info"/>
+      <remap from="rgbd_image"      to="rgbd_image"/> <!-- output -->
+      
+      <!-- Should be true for not synchronized camera topics 
+           (e.g., false for kinectv2, zed, realsense, true for xtion, kinect360)-->
+      <param name="approx_sync"       value="false"/> 
+    </node>
+
+    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen" args="--delete_db_on_start">
+          <param name="frame_id" type="string" value="base_link"/>
+
+          <param name="subscribe_depth" type="bool" value="false"/>
+          <param name="subscribe_rgbd" type="bool" value="true"/>
+          <param name="subscribe_scan" type="bool" value="true"/>
+
+          <remap from="odom" to="/odometry/filtered"/>
+          <remap from="scan" to="/scan"/>
+          <remap from="rgbd_image" to="rgbd_image"/>
+
+          <param name="queue_size" type="int" value="100"/>
+
+          <!-- RTAB-Map's parameters -->
+          <param name="RGBD/NeighborLinkRefining" type="string" value="true"/>
+          <param name="RGBD/ProximityBySpace"     type="string" value="true"/>
+          <param name="RGBD/AngularUpdate"        type="string" value="0.01"/>
+          <param name="RGBD/LinearUpdate"         type="string" value="0.01"/>
+          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+          <param name="Grid/FromDepth"            type="string" value="false"/> <!-- occupancy grid from lidar -->
+          <param name="Reg/Force3DoF"             type="string" value="true"/>
+          <param name="Reg/Strategy"              type="string" value="1"/> <!-- 1=ICP -->
+          
+          <!-- ICP parameters -->
+          <param name="Icp/CorrespondenceRatio"	      type="string" value="0.15"/>
+          <param name="Icp/VoxelSize"                 type="string" value="0.05"/>
+          <param name="Icp/MaxCorrespondenceDistance" type="string" value="0.5"/>
+	  <param name="Icp/MaxTranslation"	      type="string" value="0.5"/>
+	  <param name="Icp/MaxIterations"	      type="string" value="30"/>
+
+	  <!--<param name="Grid/RangeMin" 		      type="string" value="1.0"/>-->
+    </node>
+  </group>
+
+  <group ns="sensor">
+    <param name="update_rate" value="10"/>
+    <node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud"/>
+
+    <param name="voxel_size" value="0.1"/>
+    <param name="update_rate" value="10"/>
+    <node name="voxel_filter" pkg="pointcloud_tools" type="voxel_filter"/>
+  </group>
+</launch>

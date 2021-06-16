@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="omnicamera_mount" params="prefix topic parent_link">
+
+    <xacro:macro name="omnicamera" params="frame:=omnicamera topic:=omnicamera">
+      <!-- this link is the origin for the camera's data -->
+      <link name="${frame}" />
+      <!--
+        The gazebo plugin aligns the depth data with the Z axis, with X=left and Y=up
+        ROS expects the depth data along the X axis, with Y=left and Z=up
+        This link only exists to give the gazebo plugin the correctly-oriented frame
+      -->
+      <link name="${frame}_gazebo" />
+      <joint name="${frame}_gazebo_joint" type="fixed">
+        <parent link="${frame}"/>
+        <child link="${frame}_gazebo"/>
+        <origin xyz="0.0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+      </joint>
+
+     <gazebo reference="${frame}">
+      <turnGravityOff>true</turnGravityOff>
+      <sensor name="frontcamera" type="wideanglecamera">
+	  <camera>
+	    <!--<pose>0 0 0 0 0 -3.14159265359</pose>-->
+	    <horizontal_fov>3.83972</horizontal_fov>
+	    <image>
+	      <width>960</width>
+	      <height>960</height>
+	    </image>
+	    <clip>
+	      <near>0.1</near>
+	      <far>100</far>
+	    </clip>
+	    <!-- A new section named `lens`. -->
+	    <lens>
+	      <!-- type element is mandatory -->
+	      <type>custom</type>
+	      <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
+	      <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
+	      <custom_function>
+		<c1>1.05</c1>
+		<!-- linear scaling -->
+		<c2>4</c2>
+		<!-- angle scaling -->
+		<f>1.0</f>
+		<!-- one more scaling parameter -->
+		<fun>sin</fun>
+		<!-- one of sin,tan,id -->
+	      </custom_function>
+	      <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
+	      <!-- othervise it depends on lens type and custom function, if there is one -->
+	      <scale_to_hfov>true</scale_to_hfov>
+	      <!-- clip everything that is outside of this angle -->
+	      <cutoff_angle>1.91986</cutoff_angle>
+	      <!-- resolution of the cubemap texture, the highter it is - the sharper is your image -->
+	      <env_texture_size>2048</env_texture_size>
+	    </lens>
+	  </camera>
+	  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+	    <always_on>1</always_on>
+	    <update_rate>30</update_rate>
+	    <cameraName>${topic}/front</cameraName>
+	    <imageTopicName>image_raw</imageTopicName>
+	    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+	    <frameName>${frame}_gazebo</frameName>
+	    <hackBaseline>0.07</hackBaseline>
+	  </plugin>
+	</sensor>
+      </gazebo>
+
+    <gazebo reference="${frame}">
+      <turnGravityOff>true</turnGravityOff>
+      <sensor name="backcamera" type="wideanglecamera">
+	  <camera>
+	    <pose>-0.05 0 0 0 0 -3.14159265359</pose>
+	    <horizontal_fov>3.83972</horizontal_fov>
+	    <image>
+	      <width>960</width>
+	      <height>960</height>
+	    </image>
+	    <clip>
+	      <near>0.1</near>
+	      <far>100</far>
+	    </clip>
+	    <!-- A new section named `lens`. -->
+	    <lens>
+	      <!-- type element is mandatory -->
+	      <type>custom</type>
+	      <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
+	      <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
+	      <custom_function>
+		<c1>1.05</c1>
+		<!-- linear scaling -->
+		<c2>4</c2>
+		<!-- angle scaling -->
+		<f>1.0</f>
+		<!-- one more scaling parameter -->
+		<fun>sin</fun>
+		<!-- one of sin,tan,id -->
+	      </custom_function>
+	      <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
+	      <!-- othervise it depends on lens type and custom function, if there is one -->
+	      <scale_to_hfov>true</scale_to_hfov>
+	      <!-- clip everything that is outside of this angle -->
+	      <cutoff_angle>1.91986</cutoff_angle>
+	      <!-- resolution of the cubemap texture, the highter it is - the sharper is your image -->
+	      <env_texture_size>512</env_texture_size>
+	    </lens>
+	  </camera>
+	  <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+	    <always_on>1</always_on>
+	    <update_rate>30</update_rate>
+	    <cameraName>${topic}/back</cameraName>
+	    <imageTopicName>image_raw</imageTopicName>
+	    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+	    <frameName>${frame}_gazebo</frameName>
+	    <hackBaseline>0.07</hackBaseline>
+	  </plugin>
+	</sensor>
+      </gazebo>
+    </xacro:macro>
+
+    <link name="${prefix}_omnicamera_lens">
+    <visual>
+      <origin xyz="0 0 0.02"/>
+      <geometry>
+        <box size="0.02 0.02 0.04" />
+      </geometry>
+    </visual>
+    </link>
+    
+    <joint type="fixed" name="${prefix}_omnicamera_lens_joint">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${parent_link}" />
+      <child link="${prefix}_omnicamera_lens" />
+    </joint>
+    <joint type="fixed" name="${prefix}_omnicamera_joint">
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <parent link="${prefix}_omnicamera_lens" />
+      <child link="${prefix}_omnicam" />
+    </joint>
+
+    <xacro:omnicamera frame="${prefix}_omnicam" topic="${topic}"/>
+  </xacro:macro>
+</robot>
