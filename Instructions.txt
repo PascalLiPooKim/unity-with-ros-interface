@@ -1,0 +1,47 @@
+STEPS TO MAKE SIMULATION WORKS:
+
+WHEN INSTALLING RTABMAP DEPENDENCIES:
+source /opt/ros/noetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+sudo apt install ros-melodic-rtabmap ros-melodic-rtabmap-ros
+
+sudo apt-get install ros-melodic-rosbridge-suite
+
+sudo apt-get install ros-melodic-realsense2-camera
+    
+sudo apt-get install ros-melodic-realsense2-description
+
+(more to install depending on errors)
+
+
+1. roslaunch husky_gazebo husky_playpen_teleop.launch laser_enabled:=true realsense_enabled:=true
+
+2. roslaunch rosbridge_server rosbridge_websocket.launch
+
+
+PROJECT IDEAS:
+
+1. Investigate the latency (either visual or control or both and compare) depending on the types of data
+   being displayed to the operator. Compare between lidar and sonar preferences.
+
+2. Instead of raw point clouds, investigate if teleoperators prefer segmented point clouds. Can also
+   test performance.
+
+3. Compare which camara(s)/camera display(s) are more useful to operator. For instance, use 3 more
+   fixed cameras for the two sides and back or use a 360 degree controllable camera.
+
+4. Make the simulation semi-autonomous. Display where the husku is going.
+
+5. Combine maybe 1. and 3., still for investigating latency.
+
+
+NEW COMMANDS ON ROS:
+
+1. roslaunch husky_gazebo playpen.launch
+2. roslaunch husky_gazebo husky_teleop_v2.launch
+3. roslaunch rosbridge_server rosbridge_websocket.launch
+
+
+ON UNITY:
+ScanPointCloud, RealsensePointCloud, TeleopControls, RtabmapHelper should be on.
+

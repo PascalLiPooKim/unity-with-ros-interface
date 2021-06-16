@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &227379651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!1 &325735094
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!4 &325735098
 Transform:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 325735094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1484119763}
   m_RootOrder: 2
@@ -525,7 +525,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1244
+  m_Name: pb_Mesh-1206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3326,7 +3326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0788a2f98ba847b44b8802e83728c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Topic: /realsense/depth/color/points
+  Topic: /realsense/depth/color/points/filtered
   TimeStep: 0
   factor: 1
 --- !u!114 &979662953
@@ -3364,7 +3364,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!1001 &1000660078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3931,7 +3931,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!1 &1083152837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4547866734594433182, guid: cdd40b9f6d92d0a42b61a4c20d07532c,
@@ -5397,7 +5397,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.6:9090
+  RosBridgeServerUrl: ws://100.67.193.43:9090
 --- !u!4 &1484119763
 Transform:
   m_ObjectHideFlags: 0
