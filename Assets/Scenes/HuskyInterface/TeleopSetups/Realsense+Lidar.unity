@@ -253,7 +253,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.43:9090
+  RosBridgeServerUrl: ws://100.86.144.44:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.43:9090
+  RosBridgeServerUrl: ws://100.86.144.44:9090
 --- !u!4 &325735098
 Transform:
   m_ObjectHideFlags: 0
@@ -3364,7 +3364,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.43:9090
+  RosBridgeServerUrl: ws://100.86.144.44:9090
 --- !u!1001 &1000660078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5397,7 +5397,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.43:9090
+  RosBridgeServerUrl: ws://100.86.144.44:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.43:9090
+  RosBridgeServerUrl: ws://100.86.144.44:9090
 --- !u!4 &1484119763
 Transform:
   m_ObjectHideFlags: 0

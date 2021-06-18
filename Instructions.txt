@@ -2,8 +2,10 @@ STEPS TO MAKE SIMULATION WORKS:
 
 WHEN INSTALLING RTABMAP DEPENDENCIES:
 source /opt/ros/noetic/setup.bash
+
 source ~/catkin_ws/devel/setup.bash
-sudo apt install ros-melodic-rtabmap ros-melodic-rtabmap-ros
+
+sudo apt install ros-melodic-rtabmap ros-melodic-rtabmap-ros (check HalfManHalfWookey README)
 
 sudo apt-get install ros-melodic-rosbridge-suite
 
@@ -11,7 +13,14 @@ sudo apt-get install ros-melodic-realsense2-camera
     
 sudo apt-get install ros-melodic-realsense2-description
 
-(more to install depending on errors)
+sudo apt-get install ros-melodic-interactive-marker-twist-server
+
+sudo apt-get install ros-melodic-laser-geometries
+​
+sudo apt-get update
+
+
+(more depnedencies to install depending on errors)
 
 
 1. roslaunch husky_gazebo husky_playpen_teleop.launch laser_enabled:=true realsense_enabled:=true
@@ -38,6 +47,7 @@ PROJECT IDEAS:
 NEW COMMANDS ON ROS:
 
 1. roslaunch husky_gazebo playpen.launch
+(roslaunch rtabmap_helper mapdata_to_pointcloud.launch)??
 2. roslaunch husky_gazebo husky_teleop_v2.launch
 3. roslaunch rosbridge_server rosbridge_websocket.launch
 
