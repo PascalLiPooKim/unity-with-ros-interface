@@ -19,6 +19,7 @@
 
 #include <algorithm>
 #include "std_msgs/Float32.h"
+#include <math.h>  
 
 class LaserToPointcloud{
     private:
@@ -116,19 +117,23 @@ class LaserToPointcloud{
         std::vector<int> pointIdxRadiusSearch;
         std::vector<float> pointRadiusSquaredDistance;
 
-        if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 3)
+        std_msgs::Float32 rightMsgDistance;
+
+        if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0)
         {   
             // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
             // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
             //                                             pointRadiusSquaredDistance.end());
 
             // float closestPointDistance = pointRadiusSquaredDistance[0];
-            std_msgs::Float32 rightMsgDistance;
-            rightMsgDistance.data = pointRadiusSquaredDistance[0];
-
-            rightAudioPub.publish(rightMsgDistance);
-
+            
+            rightMsgDistance.data = sqrt(pointRadiusSquaredDistance[0]);
         }
+        else{
+            rightMsgDistance.data = 0.0f;
+        }
+
+        rightAudioPub.publish(rightMsgDistance);
     }
 };
 
