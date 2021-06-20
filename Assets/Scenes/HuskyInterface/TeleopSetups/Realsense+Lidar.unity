@@ -253,7 +253,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.86.144.44:9090
+  RosBridgeServerUrl: ws://100.67.196.18:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.86.144.44:9090
+  RosBridgeServerUrl: ws://100.67.196.18:9090
 --- !u!4 &325735098
 Transform:
   m_ObjectHideFlags: 0
@@ -3307,13 +3307,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979662950}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.8, z: -0.35}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1484119763}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &979662952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3364,7 +3364,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.86.144.44:9090
+  RosBridgeServerUrl: ws://100.67.196.18:9090
 --- !u!1001 &1000660078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5397,7 +5397,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.86.144.44:9090
+  RosBridgeServerUrl: ws://100.67.196.18:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.86.144.44:9090
+  RosBridgeServerUrl: ws://100.67.196.18:9090
 --- !u!4 &1484119763
 Transform:
   m_ObjectHideFlags: 0

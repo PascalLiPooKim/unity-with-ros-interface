@@ -47,9 +47,9 @@ PROJECT IDEAS:
 NEW COMMANDS ON ROS:
 
 1. roslaunch husky_gazebo playpen.launch
-(roslaunch rtabmap_helper mapdata_to_pointcloud.launch)??
 2. roslaunch husky_gazebo husky_teleop_v2.launch
-3. roslaunch rosbridge_server rosbridge_websocket.launch
+3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
+4. roslaunch rosbridge_server rosbridge_websocket.launch
 
 
 ON UNITY:
