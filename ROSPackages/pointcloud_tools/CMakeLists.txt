@@ -222,6 +222,13 @@ target_link_libraries(laserscan_to_pointcloud ${catkin_LIBRARIES} ${PCL_LIBRARIE
 add_executable(voxel_filter src/voxel_filter.cpp)
 target_link_libraries(voxel_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
 
+# Added for KdTree
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+add_executable(laserscan_to_pointcloud_with_KdTree src/laserscan_to_pointcloud_with_KdTree.cpp)
+target_link_libraries(laserscan_to_pointcloud_with_KdTree ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
+
 install(DIRECTORY include/${PROJECT_NAME}/
  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
