@@ -51,7 +51,7 @@ class LaserToPointcloud{
         scanSub = nh->subscribe(scanSubTopic, 1, &LaserToPointcloud::ScanCallback, this);
         pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
 
-        rightAudioPub = nh->advertise<std_msgs::Float32>("minRightDistance", 1);
+        rightAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightDistance", 1);
 
     }
 

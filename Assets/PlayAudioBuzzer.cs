@@ -7,11 +7,13 @@ namespace RosSharp.RosBridgeClient
     [RequireComponent(typeof(RosConnector))]
     [RequireComponent(typeof(AudioSource))]
 
-    public class PlayAudioBuzzer : UnitySubscriber<Messages.Standard.Float32>
+    public class PlayAudioBuzzer : UnitySubscriber<MessageTypes.Std.Float32>
     {
 
         // public AudioClip audioClip;
-        private Float32 closestDistance;
+        private MessageTypes.Std.Float32 closestDistance;
+        private bool isMessageReceived;
+        AudioSource audioSource;
 
 
         // Start is called before the first frame update
@@ -19,7 +21,7 @@ namespace RosSharp.RosBridgeClient
         {
             //Initialising ROS node
             base.Start();
-            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
             // audioSource.pitch = 0;
            
         }
@@ -32,7 +34,7 @@ namespace RosSharp.RosBridgeClient
         }
 
 
-        protected override void ReceiveMessage(Messages.Standard.Float32 closestPointDist)
+        protected override void ReceiveMessage(MessageTypes.Std.Float32 closestPointDist)
         {
             closestDistance = closestPointDist;
             isMessageReceived = true;
@@ -40,16 +42,18 @@ namespace RosSharp.RosBridgeClient
 
         private void PlayBuzzer()
         {
-            if (closestDistance > 0.0f)
+            if (closestDistance.data > 0.0f)
             {
-                audioSource.pitch = Mathf.Min(1.0f/closestPointDist, 3);
+                audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
                 audioSource.Play();
             }
             else
             {
                 audioSource.Stop();
             }
-        
+
+            isMessageReceived = false;
+
         }
     }
 
