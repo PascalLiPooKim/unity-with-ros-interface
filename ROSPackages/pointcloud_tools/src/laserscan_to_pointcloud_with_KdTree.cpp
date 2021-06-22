@@ -93,7 +93,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = 0.4937f + 0.05f;
+        rightSearchPoint.x = 0.4937f + 0.1f;
+        rightSearchPoint.y = 0.0f;
+        rightSearchPoint.z = 0.0f;
+
+        rightSearchPoint.x = 0.55f;
         rightSearchPoint.y = 0.0f;
         rightSearchPoint.z = 0.0f;
 
@@ -106,28 +110,42 @@ class LaserToPointcloud{
         kdtree.setInputCloud(cloudOutput);
 
         // K nearest neighbor search
-        // int K = 10;
+        int K = 5;
 
-        // std::vector<int> pointIdxKNNSearch(K);
-        // std::vector<float> pointKNNSquaredDistance(K);
+        std::vector<int> pointIdxKNNSearch(K);
+        std::vector<float> pointKNNSquaredDistance(K);
 
         // Neighbors within radius search
-        float radius = 0.2f;
+        float radius = 0.75f;
 
         std::vector<int> pointIdxRadiusSearch;
         std::vector<float> pointRadiusSquaredDistance;
 
         std_msgs::Float32 rightMsgDistance;
 
-        if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0)
+        // if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0)
+        // {   
+        //     // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
+        //     // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
+        //     //                                             pointRadiusSquaredDistance.end());
+
+        //     // float closestPointDistance = pointRadiusSquaredDistance[0];
+        //     std::cout << true << std::endl;
+        //     rightMsgDistance.data = sqrt(pointRadiusSquaredDistance[0]);
+        // }
+        // else{
+        //     rightMsgDistance.data = 0.0f;
+        // }
+
+        if (kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance) > 0)
         {   
             // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
             // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
             //                                             pointRadiusSquaredDistance.end());
 
             // float closestPointDistance = pointRadiusSquaredDistance[0];
-            
-            rightMsgDistance.data = sqrt(pointRadiusSquaredDistance[0]);
+            std::cout << true << std::endl;
+            rightMsgDistance.data = pointKNNSquaredDistance[0];
         }
         else{
             rightMsgDistance.data = 0.0f;
