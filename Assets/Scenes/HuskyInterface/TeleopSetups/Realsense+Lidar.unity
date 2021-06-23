@@ -214,7 +214,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &162388183
 Transform:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -1879,7 +1879,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581431296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162388183}
@@ -1935,7 +1935,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &649499160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4547866734594433182, guid: cdd40b9f6d92d0a42b61a4c20d07532c,
@@ -3768,7 +3768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914532258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162388183}
@@ -3824,7 +3824,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &963283829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,8 +4759,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1203213357}
   - component: {fileID: 1203213359}
-  - component: {fileID: 1203213358}
   - component: {fileID: 1203213360}
+  - component: {fileID: 1203213358}
   m_Layer: 0
   m_Name: RightAudioBuzzer
   m_TagString: Untagged
@@ -4908,7 +4908,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1001 &1224487946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6182,7 +6182,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.204:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
