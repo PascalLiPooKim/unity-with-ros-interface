@@ -37,8 +37,13 @@ class LaserToPointcloud{
     // Variables required for KdTree
     pcl::PointXYZ rightSearchPoint;
     pcl::PointXYZ leftSearchPoint;
+    pcl::PointXYZ frontSearchPoint;
+    pcl::PointXYZ backSearchPoint;
 
     ros::Publisher rightAudioPub;
+    ros::Publisher leftAudioPub;
+    ros::Publisher frontAudioPub;
+    ros::Publisher backAudioPub;
 
 
     public:
@@ -52,6 +57,10 @@ class LaserToPointcloud{
         pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
 
         rightAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightDistance", 1);
+        leftAudioPub = nh->advertise<std_msgs::Float32>("/audio/minLeftDistance", 1);
+        frontAudioPub = nh->advertise<std_msgs::Float32>("/audio/minFrontDistance", 1);
+        backAudioPub = nh->advertise<std_msgs::Float32>("/audio/minBackDistance", 1);
+        
 
     }
 
@@ -93,18 +102,21 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = 0.4937f + 0.1f;
-        rightSearchPoint.y = 0.0f;
+        rightSearchPoint.x = 0.0f;
+        rightSearchPoint.y = -0.2f;
         rightSearchPoint.z = 0.0f;
-
-        rightSearchPoint.x = 0.55f;
-        rightSearchPoint.y = 0.0f;
-        rightSearchPoint.z = 0.0f;
-
         
-        leftSearchPoint.x = 1024.0f * rand () / (RAND_MAX + 1.0f);
-        leftSearchPoint.y = 1024.0f * rand () / (RAND_MAX + 1.0f);
-        leftSearchPoint.z = 1024.0f * rand () / (RAND_MAX + 1.0f);
+        leftSearchPoint.x = 0.0f;
+        leftSearchPoint.y = 0.2f;
+        leftSearchPoint.z = 0.0f;
+
+        frontSearchPoint.x = 0.55f;
+        frontSearchPoint.y = 0.0f;
+        frontSearchPoint.z = 0.0f;
+
+        backSearchPoint.x = -0.55f;
+        backSearchPoint.y = 0.0f;
+        backSearchPoint.z = 0.0f;
 
         pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
         kdtree.setInputCloud(cloudOutput);
@@ -112,16 +124,28 @@ class LaserToPointcloud{
         // K nearest neighbor search
         int K = 5;
 
-        std::vector<int> pointIdxKNNSearch(K);
-        std::vector<float> pointKNNSquaredDistance(K);
+        std::vector<int> rightPointIdxKNNSearch(K);
+        std::vector<float> rightPointKNNSquaredDistance(K);
+
+        std::vector<int> leftPointIdxKNNSearch(K);
+        std::vector<float> leftPointKNNSquaredDistance(K);
+
+        std::vector<int> frontPointIdxKNNSearch(K);
+        std::vector<float> frontPointKNNSquaredDistance(K);
+
+        std::vector<int> backPointIdxKNNSearch(K);
+        std::vector<float> backPointKNNSquaredDistance(K);
 
         // Neighbors within radius search
-        float radius = 0.75f;
+        // float radius = 0.75f;
 
-        std::vector<int> pointIdxRadiusSearch;
-        std::vector<float> pointRadiusSquaredDistance;
+        // std::vector<int> pointIdxRadiusSearch;
+        // std::vector<float> pointRadiusSquaredDistance;
 
         std_msgs::Float32 rightMsgDistance;
+        std_msgs::Float32 leftMsgDistance;
+        std_msgs::Float32 frontMsgDistance;
+        std_msgs::Float32 backMsgDistance;
 
         // if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0)
         // {   
@@ -137,21 +161,54 @@ class LaserToPointcloud{
         //     rightMsgDistance.data = 0.0f;
         // }
 
-        if (kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance) > 0)
+        // On the right of Husky
+        if (kdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, rightPointKNNSquaredDistance) > 0)
         {   
             // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
             // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
             //                                             pointRadiusSquaredDistance.end());
 
             // float closestPointDistance = pointRadiusSquaredDistance[0];
-            std::cout << true << std::endl;
-            rightMsgDistance.data = pointKNNSquaredDistance[0];
+            // std::cout << true << std::endl;
+            rightMsgDistance.data = rightPointKNNSquaredDistance[0];
         }
         else{
             rightMsgDistance.data = 0.0f;
         }
 
         rightAudioPub.publish(rightMsgDistance);
+
+
+        // On the left of Husky
+        if (kdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, leftPointKNNSquaredDistance) > 0)
+        {   
+            leftMsgDistance.data = leftPointKNNSquaredDistance[0];
+        }
+        else{
+            leftMsgDistance.data = 0.0f;
+        }
+
+        leftAudioPub.publish(leftMsgDistance);
+
+        // In front of Husky
+        if (kdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, frontPointKNNSquaredDistance) > 0)
+        {   
+            frontMsgDistance.data = frontPointKNNSquaredDistance[0];
+        }
+        else{
+            frontMsgDistance.data = 0.0f;
+        }
+        frontAudioPub.publish(frontMsgDistance);
+
+        // At the back of Husky
+        // if (kdtree.nearestKSearch(backSearchPoint, K, backPointIdxKNNSearch, backPointKNNSquaredDistance) > 0)
+        // {   
+        //     backMsgDistance.data = backPointKNNSquaredDistance[0];
+        // }
+        // else{
+        //     backMsgDistance.data = 0.0f;
+        // }
+        // backAudioPub.publish(backMsgDistance);
     }
 };
 
