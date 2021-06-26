@@ -102,11 +102,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = 0.0f;
+        rightSearchPoint.x = -0.15f;
         rightSearchPoint.y = -0.2f;
         rightSearchPoint.z = 0.0f;
         
-        leftSearchPoint.x = 0.0f;
+        leftSearchPoint.x = -0.15f;
         leftSearchPoint.y = 0.2f;
         leftSearchPoint.z = 0.0f;
 
@@ -162,7 +162,7 @@ class LaserToPointcloud{
         // }
 
         // On the right of Husky
-        if (kdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, rightPointKNNSquaredDistance) > 0)
+        if (kdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, rightPointKNNSquaredDistance) > 2)
         {   
             // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
             // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
@@ -180,7 +180,7 @@ class LaserToPointcloud{
 
 
         // On the left of Husky
-        if (kdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, leftPointKNNSquaredDistance) > 0)
+        if (kdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, leftPointKNNSquaredDistance) > 2)
         {   
             leftMsgDistance.data = leftPointKNNSquaredDistance[0];
         }
@@ -191,7 +191,7 @@ class LaserToPointcloud{
         leftAudioPub.publish(leftMsgDistance);
 
         // In front of Husky
-        if (kdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, frontPointKNNSquaredDistance) > 0)
+        if (kdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, frontPointKNNSquaredDistance) > 2)
         {   
             frontMsgDistance.data = frontPointKNNSquaredDistance[0];
         }
