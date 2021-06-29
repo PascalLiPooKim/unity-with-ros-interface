@@ -26,35 +26,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <launch>
 
   <arg name="laser_enabled" default="true"/>
-  <arg name="omnicamera_enabled" default="true"/>
-  <arg name="realsense_enabled" default="true"/>
+  <arg name="realsense_enabled" default="false"/>
+  <arg name="omnicamera_enabled" default="false"/>
 
-  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+  <include file="$(find husky_gazebo)/launch/playpen.launch" />
+
+  <!--<include file="$(find husky_gazebo)/launch/spawn_husky.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
     <arg name="realsense_enabled" value="$(arg realsense_enabled)"/>
-    <arg name="omnicamera_enabled" value="$(arg omnicamera_enabled)"/>
-  </include>
-  
+    <arg name="omnicamera_enabled" default="$(arg omnicamera_enabled)"/>
+  </include>-->
 
-  <group ns="sensor">
-    <node name="omnistitch" pkg="image_tools" type="omnistitch">
-      <param name="update_rate" value="30"/>
-    </node>
-
-    <!--<node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud">
-      <param name="frame" value="base_link"/>
-      <param name="update_rate" value="30"/>
-    </node>-->
-
-	<node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_KdTree">
-      <param name="frame" value="base_link"/>
-      <param name="update_rate" value="30"/>
-    </node>
-
-    <node name="voxel_filter" pkg="pointcloud_tools" type="voxel_filter">
-      <param name="frame" value="base_link"/>
-      <param name="voxel_size" value="0.1"/>
-      <param name="update_rate" value="10"/>
-    </node>
-  </group>
 </launch>
