@@ -21,6 +21,8 @@
 #include "std_msgs/Float32.h"
 #include <math.h>  
 
+#include <pcl/filters/passthrough.h>
+
 class LaserToPointcloud{
     private:
     tf::TransformListener* tfListener;
@@ -102,11 +104,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = -0.15f;
+        rightSearchPoint.x = -0.2f;
         rightSearchPoint.y = -0.2f;
         rightSearchPoint.z = 0.0f;
         
-        leftSearchPoint.x = -0.15f;
+        leftSearchPoint.x = -0.2f;
         leftSearchPoint.y = 0.2f;
         leftSearchPoint.z = 0.0f;
 
@@ -121,6 +123,22 @@ class LaserToPointcloud{
         pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
         kdtree.setInputCloud(cloudOutput);
 
+
+        pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
+        pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
+        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.25f, 0.25f);
+
+        pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
+        pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
+        passThroughFilter(cloudOutput, rightFilteredCloud, "x", -0.5f, 0.5f);
+
+        pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
+        pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.5f, 0.5f);
+
+        
+        
+
         // K nearest neighbor search
         int K = 5;
 
@@ -133,71 +151,132 @@ class LaserToPointcloud{
         std::vector<int> frontPointIdxKNNSearch(K);
         std::vector<float> frontPointKNNSquaredDistance(K);
 
-        std::vector<int> backPointIdxKNNSearch(K);
-        std::vector<float> backPointKNNSquaredDistance(K);
+        // std::vector<int> backPointIdxKNNSearch(K);
+        // std::vector<float> backPointKNNSquaredDistance(K);
 
         // Neighbors within radius search
-        // float radius = 0.75f;
+        // float radius = 0.3f;
 
-        // std::vector<int> pointIdxRadiusSearch;
-        // std::vector<float> pointRadiusSquaredDistance;
+        // std::vector<int> rightPointIdxRadiusSearch;
+        // std::vector<float> rightPointRadiusSquaredDistance;
 
         std_msgs::Float32 rightMsgDistance;
         std_msgs::Float32 leftMsgDistance;
         std_msgs::Float32 frontMsgDistance;
         std_msgs::Float32 backMsgDistance;
 
-        // if (kdtree.radiusSearch(rightSearchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0)
+        // if (kdtree.radiusSearch(rightSearchPoint, radius, rightPointIdxRadiusSearch, 
+        //     rightPointRadiusSquaredDistance) > 2)
         // {   
         //     // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
         //     // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
         //     //                                             pointRadiusSquaredDistance.end());
 
         //     // float closestPointDistance = pointRadiusSquaredDistance[0];
-        //     std::cout << true << std::endl;
-        //     rightMsgDistance.data = sqrt(pointRadiusSquaredDistance[0]);
+        //     // std::cout << true << std::endl;
+        //     rightMsgDistance.data = rightPointRadiusSquaredDistance[0];
         // }
         // else{
         //     rightMsgDistance.data = 0.0f;
         // }
 
         // On the right of Husky
-        if (kdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, rightPointKNNSquaredDistance) > 2)
-        {   
-            // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
-            // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
-            //                                             pointRadiusSquaredDistance.end());
+        if(rightFilteredCloud->size() > 0)
+        {
+            rightKdtree.setInputCloud(rightFilteredCloud);
+            if (rightKdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, 
+                rightPointKNNSquaredDistance) > 2)
+            {   
+                rightMsgDistance.data = rightPointKNNSquaredDistance[0];
+            }
+            else
+            {
+                rightMsgDistance.data = 0.0f;
+            }
 
-            // float closestPointDistance = pointRadiusSquaredDistance[0];
-            // std::cout << true << std::endl;
-            rightMsgDistance.data = rightPointKNNSquaredDistance[0];
         }
-        else{
+        else
+        {
             rightMsgDistance.data = 0.0f;
         }
+        // if (kdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, 
+        //     rightPointKNNSquaredDistance) > 2)
+        // {   
+        //     // kdtree.nearestKSearch(rightSearchPoint, K, pointIdxKNNSearch, pointKNNSquaredDistance);
+        //     // float closestPointDistance = *min_element(pointRadiusSquaredDistance.begin(),
+        //     //                                             pointRadiusSquaredDistance.end());
+
+        //     // float closestPointDistance = pointRadiusSquaredDistance[0];
+        //     // std::cout << true << std::endl;
+        //     rightMsgDistance.data = rightPointKNNSquaredDistance[0];
+        // }
+        // else{
+        //     rightMsgDistance.data = 0.0f;
+        // }
 
         rightAudioPub.publish(rightMsgDistance);
 
 
         // On the left of Husky
-        if (kdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, leftPointKNNSquaredDistance) > 2)
-        {   
-            leftMsgDistance.data = leftPointKNNSquaredDistance[0];
+        if(leftFilteredCloud->size() > 0)
+        {
+            leftKdtree.setInputCloud(leftFilteredCloud);
+            if (leftKdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, 
+                leftPointKNNSquaredDistance) > 2)
+            {   
+                leftMsgDistance.data = leftPointKNNSquaredDistance[0];
+            }
+            else
+            {
+                leftMsgDistance.data = 0.0f;
+            }
+
         }
-        else{
+        else
+        {
             leftMsgDistance.data = 0.0f;
         }
+
+        // if (kdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, leftPointKNNSquaredDistance) > 2)
+        // {   
+        //     leftMsgDistance.data = leftPointKNNSquaredDistance[0];
+        // }
+        // else{
+        //     leftMsgDistance.data = 0.0f;
+        // }
 
         leftAudioPub.publish(leftMsgDistance);
 
         // In front of Husky
-        if (kdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, frontPointKNNSquaredDistance) > 2)
-        {   
-            frontMsgDistance.data = frontPointKNNSquaredDistance[0];
-        }
+
+        if(frontFilteredCloud->size() > 0){
+
+            frontKdtree.setInputCloud(frontFilteredCloud);
+
+            if (frontKdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, 
+            frontPointKNNSquaredDistance) > 0)
+            {   
+                frontMsgDistance.data = frontPointKNNSquaredDistance[0];
+            }
+            else{
+                frontMsgDistance.data = 0.0f;
+                }
+            }
         else{
             frontMsgDistance.data = 0.0f;
         }
+
+
+
+
+        // if (kdtree.nearestKSearch(frontSearchPoint, K, frontPointIdxKNNSearch, frontPointKNNSquaredDistance) > 2)
+        // {   
+        //     frontMsgDistance.data = frontPointKNNSquaredDistance[0];
+        // }
+        // else{
+        //     frontMsgDistance.data = 0.0f;
+        // }
+
         frontAudioPub.publish(frontMsgDistance);
 
         // At the back of Husky
@@ -210,6 +289,18 @@ class LaserToPointcloud{
         // }
         // backAudioPub.publish(backMsgDistance);
     }
+
+    void passThroughFilter(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, 
+    pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud, std::string axis, 
+    float min, float max){
+
+        pcl::PassThrough<pcl::PointXYZ> yPass;
+        yPass.setInputCloud (cloud);
+        yPass.setFilterFieldName (axis);
+        // min and max values in y axis to keep
+        yPass.setFilterLimits (min, max);
+        yPass.filter (*filteredCloud);
+        }
 };
 
 
