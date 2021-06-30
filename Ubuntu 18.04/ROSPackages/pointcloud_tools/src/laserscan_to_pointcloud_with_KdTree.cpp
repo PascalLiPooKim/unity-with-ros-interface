@@ -104,15 +104,15 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = -0.2f;
-        rightSearchPoint.y = -0.2f;
+        rightSearchPoint.x = 0.15f; //-0.15 -> - 0.2
+        rightSearchPoint.y = -0.25f;
         rightSearchPoint.z = 0.0f;
         
-        leftSearchPoint.x = -0.2f;
-        leftSearchPoint.y = 0.2f;
+        leftSearchPoint.x = 0.15f;
+        leftSearchPoint.y = 0.25f; //0.2
         leftSearchPoint.z = 0.0f;
 
-        frontSearchPoint.x = 0.55f;
+        frontSearchPoint.x = 0.5f; //0.55
         frontSearchPoint.y = 0.0f;
         frontSearchPoint.z = 0.0f;
 
@@ -126,15 +126,17 @@ class LaserToPointcloud{
 
         pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.25f, 0.25f);
+        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.35f, 0.35f);
 
         pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, rightFilteredCloud, "x", -0.5f, 0.5f);
+        passThroughFilter(cloudOutput, rightFilteredCloud, 
+        "x", -0.5f, 0.6f, "y", -1.5f, -0.3f);
+        
 
         pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.5f, 0.5f);
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.5f, 0.6f, "y", 0.25f, 1.55f);
 
         
         
@@ -185,7 +187,7 @@ class LaserToPointcloud{
         {
             rightKdtree.setInputCloud(rightFilteredCloud);
             if (rightKdtree.nearestKSearch(rightSearchPoint, K, rightPointIdxKNNSearch, 
-                rightPointKNNSquaredDistance) > 2)
+                rightPointKNNSquaredDistance) > 0)
             {   
                 rightMsgDistance.data = rightPointKNNSquaredDistance[0];
             }
@@ -222,7 +224,7 @@ class LaserToPointcloud{
         {
             leftKdtree.setInputCloud(leftFilteredCloud);
             if (leftKdtree.nearestKSearch(leftSearchPoint, K, leftPointIdxKNNSearch, 
-                leftPointKNNSquaredDistance) > 2)
+                leftPointKNNSquaredDistance) > 0)
             {   
                 leftMsgDistance.data = leftPointKNNSquaredDistance[0];
             }
@@ -292,15 +294,37 @@ class LaserToPointcloud{
 
     void passThroughFilter(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, 
     pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud, std::string axis, 
-    float min, float max){
+    float min, float max)
+    {
+            pcl::PassThrough<pcl::PointXYZ> pass;
+            pass.setInputCloud (cloud);
+            pass.setFilterFieldName (axis);
+            // min and max values in y axis to keep
+            pass.setFilterLimits (min, max);
+            pass.filter (*filteredCloud);
+            
+    }
 
+    void passThroughFilter(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, 
+    pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud, std::string xAxis, 
+    float xMin, float xMax, std::string yAxis, float yMin, float yMax)
+    {
+
+        pcl::PassThrough<pcl::PointXYZ> xPass;
+        xPass.setInputCloud (cloud);
+        xPass.setFilterFieldName (xAxis);
+            // min and max values in y axis to keep
+        xPass.setFilterLimits (xMin, xMax);
+        xPass.filter (*filteredCloud);
+        
         pcl::PassThrough<pcl::PointXYZ> yPass;
-        yPass.setInputCloud (cloud);
-        yPass.setFilterFieldName (axis);
+        yPass.setInputCloud (filteredCloud);
+        yPass.setFilterFieldName (yAxis);
         // min and max values in y axis to keep
-        yPass.setFilterLimits (min, max);
+        yPass.setFilterLimits (yMin, yMax);
         yPass.filter (*filteredCloud);
-        }
+            
+    }
 };
 
 
