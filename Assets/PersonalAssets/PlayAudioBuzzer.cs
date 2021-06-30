@@ -38,7 +38,7 @@ namespace RosSharp.RosBridgeClient
         protected override void ReceiveMessage(MessageTypes.Std.Float32 closestPointDist)
         {
             closestDistance = closestPointDist;
-            print(closestDistance.data);
+            //print(closestDistance.data);
             isMessageReceived = true;
         }
 
@@ -46,7 +46,7 @@ namespace RosSharp.RosBridgeClient
         {
 
             
-                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 0.9f)
+                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.3f)
                 {
                     //audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
 

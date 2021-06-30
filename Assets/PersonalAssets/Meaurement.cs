@@ -7,6 +7,7 @@ public class Meaurement : MonoBehaviour
 {
     public Text timerText;
     public Text keystrokesCounterText;
+    private bool targetReached = false;
 
 
     private float startTime;
@@ -21,6 +22,10 @@ public class Meaurement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (targetReached)
+		{
+            return;
+		}
         float duration = Time.time - startTime;
 
         string minutes = ((int)duration / 60).ToString();
@@ -34,5 +39,12 @@ public class Meaurement : MonoBehaviour
 		}
 
         keystrokesCounterText.text = keystrokesCount.ToString();
+    }
+
+    public void Finish()
+	{
+        timerText.color = Color.green;
+        keystrokesCounterText.color = Color.yellow;
+        targetReached = true;
     }
 }
