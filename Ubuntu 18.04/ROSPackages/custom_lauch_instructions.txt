@@ -1,0 +1,27 @@
+For default Husky position and clearpath_playpen.world:
+1. roslaunch husky_gazebo husky_playpen_v2.launch
+2. roslaunch husky_gazebo husky_teleop_v2.launch
+3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
+4. roslaunch rosbridge_server rosbridge_websocket.launch
+
+
+For default Husky position and custom gazebo_course_1_easy.world:
+-New file(s) created and to used: husky_gazebo_course_1_easy.launch
+1. roslaunch husky_gazebo husky_gazebo_course_1_easy.launch
+2. to 4. same as above
+
+
+For custom Husky position (-1, -9, 0) and custom gazebo_course_2_easy.world:
+-New file(s) created and to used: 
+husky_gazebo_course_2_easy.launch, husky_teleop_v3.launch, spawn_husky_v2.launch
+1. roslaunch husky_gazebo husky_gazebo_course_2_easy.launch
+2. roslaunch husky_gazebo husky_teleop_v3.launch
+3. and 4. same as above
+
+
+For custom Husky position and custom gazebo_course_1_medium.world:
+-New file(s) created and to used: 
+husky_gazebo_course_1_medium.launch, husky_teleop_v4.launch, spawn_husky_v3.launch
+1. roslaunch husky_gazebo husky_gazebo_course_1_medium.launch
+2. roslaunch husky_gazebo husky_teleop_v4.launch
+3. and 4. same as above
