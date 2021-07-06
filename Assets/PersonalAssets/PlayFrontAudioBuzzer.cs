@@ -47,7 +47,7 @@ namespace RosSharp.RosBridgeClient
         {
 
             
-                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.3f)
+                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.8f)
                 {
                     //audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
 

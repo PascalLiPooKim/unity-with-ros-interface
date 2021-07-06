@@ -8,8 +8,8 @@ public class GoalBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 newPos = new Vector3(1.0f, 0.0f, 4.0f);
-        gameObject.transform.TransformPoint(newPos);
+        // Vector3 newPos = new Vector3(1.0f, 0.0f, 4.0f);
+        // gameObject.transform.TransformPoint(newPos);
     }
 
     // Update is called once per frame
