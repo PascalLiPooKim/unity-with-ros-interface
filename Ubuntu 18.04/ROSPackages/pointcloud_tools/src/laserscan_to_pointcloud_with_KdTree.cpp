@@ -47,6 +47,9 @@ class LaserToPointcloud{
     ros::Publisher frontAudioPub;
     ros::Publisher backAudioPub;
 
+    ros::Publisher frontPclPub;
+    ros::Publisher leftPclPub;
+
 
     public:
     LaserToPointcloud(ros::NodeHandle *nh){
@@ -57,11 +60,15 @@ class LaserToPointcloud{
         nh->getParam("frame", frame);
         scanSub = nh->subscribe(scanSubTopic, 1, &LaserToPointcloud::ScanCallback, this);
         pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
+        
 
         rightAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightDistance", 1);
         leftAudioPub = nh->advertise<std_msgs::Float32>("/audio/minLeftDistance", 1);
         frontAudioPub = nh->advertise<std_msgs::Float32>("/audio/minFrontDistance", 1);
-        backAudioPub = nh->advertise<std_msgs::Float32>("/audio/minBackDistance", 1);
+        //backAudioPub = nh->advertise<std_msgs::Float32>("/audio/minBackDistance", 1);
+
+        frontPclPub = nh->advertise<sensor_msgs::PointCloud2>("/frontFilteredPcl", 1);
+        leftPclPub = nh->advertise<sensor_msgs::PointCloud2>("/leftFilteredPcl", 1);
         
 
     }
@@ -104,11 +111,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = 0.15f; //-0.15 -> - 0.2
+        rightSearchPoint.x = 0.3f; //-0.15 -> - 0.2
         rightSearchPoint.y = -0.25f;
         rightSearchPoint.z = 0.0f;
         
-        leftSearchPoint.x = 0.15f;
+        leftSearchPoint.x = 0.3f;
         leftSearchPoint.y = 0.25f; //0.2
         leftSearchPoint.z = 0.0f;
 
@@ -126,17 +133,17 @@ class LaserToPointcloud{
 
         pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.35f, 0.35f);
+        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.5f, 0.5f); // 0.35
 
         pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
         passThroughFilter(cloudOutput, rightFilteredCloud, 
-        "x", -0.5f, 0.6f, "y", -1.5f, -0.3f);
-        
+        "x", -0.4f, 0.7f, "y", -1.5f, -0.3f);
+        // -0.5    0.6
 
         pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.5f, 0.6f, "y", 0.25f, 1.55f);
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.7f, "y", 0.3f, 1.55f);
 
         
         
@@ -248,6 +255,8 @@ class LaserToPointcloud{
         // }
 
         leftAudioPub.publish(leftMsgDistance);
+        leftPclPub.publish(leftFilteredCloud);
+        
 
         // In front of Husky
 
@@ -280,6 +289,7 @@ class LaserToPointcloud{
         // }
 
         frontAudioPub.publish(frontMsgDistance);
+        frontPclPub.publish(frontFilteredCloud);
 
         // At the back of Husky
         // if (kdtree.nearestKSearch(backSearchPoint, K, backPointIdxKNNSearch, backPointKNNSquaredDistance) > 0)
