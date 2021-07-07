@@ -49,6 +49,7 @@ class LaserToPointcloud{
 
     ros::Publisher frontPclPub;
     ros::Publisher leftPclPub;
+    ros::Publisher rightPclPub;
 
 
     public:
@@ -69,6 +70,7 @@ class LaserToPointcloud{
 
         frontPclPub = nh->advertise<sensor_msgs::PointCloud2>("/frontFilteredPcl", 1);
         leftPclPub = nh->advertise<sensor_msgs::PointCloud2>("/leftFilteredPcl", 1);
+        rightPclPub = nh->advertise<sensor_msgs::PointCloud2>("/rightFilteredPcl", 1);
         
 
     }
@@ -111,11 +113,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_y_size" value="0.57090000" />
         // <xacro:property name="base_z_size" value="0.24750000" />
 
-        rightSearchPoint.x = 0.3f; //-0.15 -> - 0.2
+        rightSearchPoint.x = 0.2f; //-0.15 -> - 0.2
         rightSearchPoint.y = -0.25f;
         rightSearchPoint.z = 0.0f;
         
-        leftSearchPoint.x = 0.3f;
+        leftSearchPoint.x = 0.2f;
         leftSearchPoint.y = 0.25f; //0.2
         leftSearchPoint.z = 0.0f;
 
@@ -133,18 +135,18 @@ class LaserToPointcloud{
 
         pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.5f, 0.5f); // 0.35
+        passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.7f, 0.7f); // 0.35 --> 0.5
 
         pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
         passThroughFilter(cloudOutput, rightFilteredCloud, 
-        "x", -0.4f, 0.7f, "y", -1.5f, -0.3f);
-        // -0.5    0.6
+        "x", -0.4f, 0.90f, "y", -1.55f, -0.25f);
+        // -0.5    0.6 --> 0.7  
 
         pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.7f, "y", 0.3f, 1.55f);
-
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.90f, "y", 0.25f, 1.55f);
+                                                                    
         
         
 
@@ -224,6 +226,7 @@ class LaserToPointcloud{
         // }
 
         rightAudioPub.publish(rightMsgDistance);
+        rightPclPub.publish(rightFilteredCloud);
 
 
         // On the left of Husky
@@ -320,19 +323,35 @@ class LaserToPointcloud{
     float xMin, float xMax, std::string yAxis, float yMin, float yMax)
     {
 
+        pcl::PassThrough<pcl::PointXYZ> yPass;
+        yPass.setInputCloud (cloud);
+        yPass.setFilterFieldName (yAxis);
+        // min and max values in y axis to keep
+        yPass.setFilterLimits (yMin, yMax);
+        yPass.filter (*filteredCloud);
+
         pcl::PassThrough<pcl::PointXYZ> xPass;
-        xPass.setInputCloud (cloud);
+        xPass.setInputCloud (filteredCloud);
         xPass.setFilterFieldName (xAxis);
             // min and max values in y axis to keep
         xPass.setFilterLimits (xMin, xMax);
         xPass.filter (*filteredCloud);
         
-        pcl::PassThrough<pcl::PointXYZ> yPass;
-        yPass.setInputCloud (filteredCloud);
-        yPass.setFilterFieldName (yAxis);
-        // min and max values in y axis to keep
-        yPass.setFilterLimits (yMin, yMax);
-        yPass.filter (*filteredCloud);
+        
+
+        // pcl::PassThrough<pcl::PointXYZ> xPass;
+        // xPass.setInputCloud (cloud);
+        // xPass.setFilterFieldName (xAxis);
+        //     // min and max values in y axis to keep
+        // xPass.setFilterLimits (xMin, xMax);
+        // xPass.filter (*filteredCloud);
+        
+        // pcl::PassThrough<pcl::PointXYZ> yPass;
+        // yPass.setInputCloud (filteredCloud);
+        // yPass.setFilterFieldName (yAxis);
+        // // min and max values in y axis to keep
+        // yPass.setFilterLimits (yMin, yMax);
+        // yPass.filter (*filteredCloud);
             
     }
 };
