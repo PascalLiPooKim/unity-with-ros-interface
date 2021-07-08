@@ -15,8 +15,7 @@ public class Meaurement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startTime = Time.time;
-        keystrokesCount = 0;
+        InitTimerAndCounter();
     }
 
     // Update is called once per frame
@@ -26,6 +25,19 @@ public class Meaurement : MonoBehaviour
 		{
             return;
 		}
+
+        UpdateTimerAndCounter();
+        
+    }
+
+    private void InitTimerAndCounter()
+	{
+        startTime = Time.time;
+        keystrokesCount = 0;
+    }
+
+    private void UpdateTimerAndCounter()
+	{
         float duration = Time.time - startTime;
 
         string minutes = ((int)duration / 60).ToString();
@@ -34,12 +46,14 @@ public class Meaurement : MonoBehaviour
         timerText.text = minutes + ':' + seconds;
 
         if (Input.GetKeyDown("w") || Input.GetKeyDown("a") || Input.GetKeyDown("s") || Input.GetKeyDown("d"))
-		{
+        {
             keystrokesCount += 1;
-		}
+        }
 
         keystrokesCounterText.text = keystrokesCount.ToString();
     }
+
+    
 
     public void Finish()
 	{
