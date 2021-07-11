@@ -25,3 +25,14 @@ husky_gazebo_course_1_medium.launch, husky_teleop_v4.launch, spawn_husky_v3.laun
 1. roslaunch husky_gazebo husky_gazebo_course_1_medium.launch
 2. roslaunch husky_gazebo husky_teleop_v4.launch
 3. and 4. same as above
+5.rosrun commands_to_unity set_model_state_course_2_easy.py 
+
+
+
+For custom Husky position (9.5, 0, 0) and custom gazebo_course_3_hard.world:
+-New file(s) created and to used: 
+husky_gazebo_course_3_hard.launch, husky_teleop_v5.launch, spawn_husky_v4.launch
+1. roslaunch husky_gazebo husky_gazebo_course_3_hard.launch
+2. roslaunch husky_gazebo husky_teleop_v5.launch
+3. and 4. same as above
+5.rosrun commands_to_unity set_model_state_course_3_hard.py 
