@@ -418,6 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 300191615}
   keystrokesCounterText: {fileID: 1374623249}
+  IDNumber: 1
+  age: 23
 --- !u!1 &195861721
 GameObject:
   m_ObjectHideFlags: 0
