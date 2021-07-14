@@ -112,6 +112,7 @@ public class Meaurement : MonoBehaviour
 		{
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@filePath, true))
 			{
+                file.WriteLine(" ");
                 file.WriteLine(IDNumber.ToString() + ", " + age.ToString() + ", " + completionTime + ", " + numberOfKeystrokes);
 			}
 		}

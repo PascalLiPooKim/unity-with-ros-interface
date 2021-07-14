@@ -229,7 +229,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!82 &62794853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!4 &162388183
 Transform:
   m_ObjectHideFlags: 0
@@ -617,7 +617,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293410974
 Transform:
   m_ObjectHideFlags: 0
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!1 &300191613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!82 &374404051
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1906,7 +1906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &490484431
 Transform:
   m_ObjectHideFlags: 0
@@ -1974,7 +1974,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!1 &491896749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2528,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!1 &649499160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4547866734594433182, guid: cdd40b9f6d92d0a42b61a4c20d07532c,
@@ -4417,7 +4417,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!43 &915401171
 Mesh:
   m_ObjectHideFlags: 0
@@ -4723,7 +4723,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!1 &979662950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5799,7 +5799,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!114 &1203213361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7043,7 +7043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1329235561
 Transform:
   m_ObjectHideFlags: 0
@@ -7111,7 +7111,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!1 &1365656877
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,7 +7175,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.119:9090
+  RosBridgeServerUrl: ws://100.67.196.200:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0

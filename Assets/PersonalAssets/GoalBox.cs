@@ -33,6 +33,7 @@ namespace RosSharp.RosBridgeClient
     {
 
         private bool isMessageReceived;
+        private bool sentOnce = false;
         private MessageTypes.Std.Int32 measurementStatus;
 
         protected override void Start()
@@ -42,8 +43,12 @@ namespace RosSharp.RosBridgeClient
 
         void Update()
 		{
-            if (isMessageReceived)
+            if (isMessageReceived && !sentOnce)
+			{
+                sentOnce = true;
                 StopTimerAndCounter();
+            }
+                
         }
 
 
