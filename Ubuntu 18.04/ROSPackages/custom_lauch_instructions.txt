@@ -3,7 +3,7 @@ For default Husky position and clearpath_playpen.world:
 2. roslaunch husky_gazebo husky_teleop_v2.launch
 3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
 4. roslaunch rosbridge_server rosbridge_websocket.launch
-5. rosrun commands_to_unity keyboard_hits.cpp
+5. rosrun commands_to_unity keyboard_hits
 
 
 For default Husky position and custom gazebo_course_1_easy.world:
@@ -26,8 +26,8 @@ For custom Husky position (-1, -9, 0) and custom gazebo_course_2_easy.world:
 husky_gazebo_course_2_easy.launch, husky_teleop_v3.launch, spawn_husky_v2.launch
 1. roslaunch husky_gazebo husky_gazebo_course_2_easy.launch
 2. roslaunch husky_gazebo husky_teleop_v3.launch
-3. to 5. same as above
-6. rosrun commands_to_unity set_model_state_course_2_easy.py
+3. to 4. same as above
+6. roslaunch commands_to_unity course_2_easy_kbhit.launch
 
 
 
@@ -37,5 +37,5 @@ For custom Husky position (9.5, 0, 0) and custom gazebo_course_3_hard.world:
 husky_gazebo_course_3_hard.launch, husky_teleop_v5.launch, spawn_husky_v4.launch
 1. roslaunch husky_gazebo husky_gazebo_course_3_hard.launch
 2. roslaunch husky_gazebo husky_teleop_v5.launch
-3. to 5. same as above
-6. rosrun commands_to_unity set_model_state_course_3_hard.py 
+3. to 4. same as above
+6. roslaunch commands_to_unity course_3_hard_kbhit.launch

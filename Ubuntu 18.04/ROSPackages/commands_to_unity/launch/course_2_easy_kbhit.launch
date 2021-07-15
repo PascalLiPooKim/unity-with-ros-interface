@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="commands_to_unity" name="set_model_state_course_2_easy" 
+    type="set_model_state_course_2_easy.py" output="screen"/>
+
+    <node pkg="commands_to_unity" name="keyboard_hits" 
+    type="keyboard_hits" output="screen"/>
+</launch>
