@@ -5,6 +5,13 @@ For default Husky position and clearpath_playpen.world:
 4. roslaunch rosbridge_server rosbridge_websocket.launch
 5. rosrun commands_to_unity keyboard_hits
 
+For default Husky position and clearpath_playpen.world:
+1. roslaunch husky_gazebo husky_playpen_v2.launch
+2. roslaunch husky_gazebo husky_teleop_prelim.launch
+3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
+4. roslaunch rosbridge_server rosbridge_websocket.launch
+5. rosrun commands_to_unity keyboard_hits
+
 
 For default Husky position and custom gazebo_course_1_easy.world:
 -New file(s) created and to used: husky_gazebo_course_1_easy.launch

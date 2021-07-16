@@ -229,6 +229,9 @@ add_definitions(${PCL_DEFINITIONS})
 add_executable(laserscan_to_pointcloud_with_KdTree src/laserscan_to_pointcloud_with_KdTree.cpp)
 target_link_libraries(laserscan_to_pointcloud_with_KdTree ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
 
+add_executable(laserscan_to_pointcloud_with_KdTree_v2 src/laserscan_to_pointcloud_with_KdTree_v2.cpp)
+target_link_libraries(laserscan_to_pointcloud_with_KdTree_v2 ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
+
 install(DIRECTORY include/${PROJECT_NAME}/
  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
