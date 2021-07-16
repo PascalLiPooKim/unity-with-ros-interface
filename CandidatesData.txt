@@ -2,3 +2,5 @@ Candidate ID, Age, Completion Time, Number of Keystrokes, Workload Rating
 1, 23, 0:10.87, 10
  
 1, 23, 4:8.83, 79
+ 
+3, 99, 1:26.99, 31
