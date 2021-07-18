@@ -119,7 +119,7 @@ public class Meaurement : MonoBehaviour
         catch(Exception e)
 		{
             throw new ApplicationException("Lol", e);
-            print("Fail");
+            //print("Fail");
 		}
 	}
 
