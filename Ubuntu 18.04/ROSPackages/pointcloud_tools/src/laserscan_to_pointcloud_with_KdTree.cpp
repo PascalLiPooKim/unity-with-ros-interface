@@ -140,13 +140,13 @@ class LaserToPointcloud{
         pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
         passThroughFilter(cloudOutput, rightFilteredCloud, 
-        "x", -0.4f, 0.90f, "y", -1.55f, -0.25f);
+        "x", -0.4f, 0.90f, "y", -1.55f, -0.35f); // -0.25
         // -0.5    0.6 --> 0.7  
 
         pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.90f, "y", 0.25f, 1.55f);
-                                                                    
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.90f, "y", 0.35f, 1.55f);
+                                                                                //0.25         
         
         
 
