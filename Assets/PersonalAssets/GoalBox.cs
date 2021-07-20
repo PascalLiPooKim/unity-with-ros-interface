@@ -64,6 +64,8 @@ namespace RosSharp.RosBridgeClient
             if (measurementStatus.data == 1)
 			{
                 GameObject.Find("Husky_V2").SendMessage("Finish");
+                GameObject.Find("Husky_V3").SendMessage("Finish");
+                GameObject.Find("Husky_Dynamic").SendMessage("Finish");
             }
             else if (measurementStatus.data == 0)
             {

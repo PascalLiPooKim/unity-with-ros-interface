@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62794848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.25, z: 0}
+  m_LocalPosition: {x: -1.25, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162388183}
@@ -229,7 +229,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &62794853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c2838556e325a194cacb2fdb3a9e59f9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -250,8 +250,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.5
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -338,13 +338,14 @@ GameObject:
   - component: {fileID: 130314166}
   - component: {fileID: 130314165}
   - component: {fileID: 130314164}
+  - component: {fileID: 130314167}
   m_Layer: 0
   m_Name: RightAudioBuzzer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &130314163
 Transform:
   m_ObjectHideFlags: 0
@@ -389,7 +390,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!82 &130314166
 AudioSource:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 5
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -486,6 +487,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &130314167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130314162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbca8cbee9105746b57c90bde54bf41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /audio/minRightPos
+  TimeStep: 0
+  impact: {fileID: 8300000, guid: 571c17644771cd844adffaa320a3aef2, type: 3}
 --- !u!1 &158195596
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &162388181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +698,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!4 &162388183
 Transform:
   m_ObjectHideFlags: 0
@@ -933,7 +949,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &227379653
 Transform:
   m_ObjectHideFlags: 0
@@ -1345,7 +1361,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &300191613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,13 +1636,14 @@ GameObject:
   - component: {fileID: 361846327}
   - component: {fileID: 361846326}
   - component: {fileID: 361846325}
+  - component: {fileID: 361846328}
   m_Layer: 0
   m_Name: LeftAudioBuzzer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &361846324
 Transform:
   m_ObjectHideFlags: 0
@@ -1648,7 +1665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361846323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f467f473a3ad541b95bafc37e795a2, type: 3}
   m_Name: 
@@ -1671,7 +1688,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!82 &361846327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1682,7 +1699,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c2838556e325a194cacb2fdb3a9e59f9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1693,7 +1710,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 5
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1768,6 +1785,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &361846328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361846323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbca8cbee9105746b57c90bde54bf41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /audio/minLeftPos
+  TimeStep: 0
+  impact: {fileID: 8300000, guid: c2838556e325a194cacb2fdb3a9e59f9, type: 3}
 --- !u!1 &374404046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,7 +1827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374404046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.25, z: 0}
+  m_LocalPosition: {x: 1.25, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162388183}
@@ -1831,7 +1863,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &374404051
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1852,8 +1884,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.5
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -2264,7 +2296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459455254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.25, z: -2.5}
+  m_LocalPosition: {x: 2, y: 0.25, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -2300,7 +2332,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &459455258
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2310,20 +2342,21 @@ AudioSource:
   m_GameObject: {fileID: 459455254}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243366450046692526, guid: ec12f7772c03e4c4c9e4c2f1643595ad,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 571c17644771cd844adffaa320a3aef2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
-  Spatialize: 1
+  Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
   MaxDistance: 5
-  Pan2D: 1
+  Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -2610,7 +2643,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &491896749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,7 +3132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &581431297
 Transform:
   m_ObjectHideFlags: 0
@@ -3164,7 +3197,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &649499160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4547866734594433182, guid: cdd40b9f6d92d0a42b61a4c20d07532c,
@@ -4176,7 +4209,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &781432620
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,7 +4552,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &795294419
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5574,7 +5607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &914532259
 Transform:
   m_ObjectHideFlags: 0
@@ -5639,7 +5672,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!43 &915401171
 Mesh:
   m_ObjectHideFlags: 0
@@ -5821,7 +5854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &929388686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5868,7 +5901,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.67.196.205:9090
 --- !u!4 &929388689
 Transform:
   m_ObjectHideFlags: 0
@@ -5886,8 +5919,8 @@ Transform:
   - {fileID: 1571879320}
   - {fileID: 2035159638}
   - {fileID: 937222695}
-  - {fileID: 1461144071}
   - {fileID: 2091564107}
+  - {fileID: 1461144071}
   - {fileID: 130314163}
   - {fileID: 361846324}
   - {fileID: 1099261693}
@@ -6063,7 +6096,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &963283829
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,7 +6267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974138943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.25, z: 2.5}
+  m_LocalPosition: {x: 2, y: 0.25, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -6270,7 +6303,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &974138947
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6280,20 +6313,21 @@ AudioSource:
   m_GameObject: {fileID: 974138943}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243366450046692526, guid: ec12f7772c03e4c4c9e4c2f1643595ad,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 571c17644771cd844adffaa320a3aef2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
-  Spatialize: 1
+  Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
   MaxDistance: 5
-  Pan2D: 1
+  Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -6889,7 +6923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1033364210
 Transform:
   m_ObjectHideFlags: 0
@@ -6957,7 +6991,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!4 &1048648098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4101459293844584, guid: 8238921bafd389b44921fe80cc7f1f9d,
@@ -7153,7 +7187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1098077582
 Transform:
   m_ObjectHideFlags: 0
@@ -7221,7 +7255,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &1099261692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7292,7 +7326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1112266568
 Transform:
   m_ObjectHideFlags: 0
@@ -7360,7 +7394,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &1142442632
 GameObject:
   m_ObjectHideFlags: 0
@@ -7447,7 +7481,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &1147031887
 GameObject:
   m_ObjectHideFlags: 0
@@ -7737,7 +7771,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.343
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7836,7 +7870,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!114 &1203213361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7851,7 +7885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /audio/minFrontDistance
   TimeStep: 0
-  impact: {fileID: 8300000, guid: 09ff81fa1a01bac4e8ca49acd3e567ec, type: 3}
+  impact: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
 --- !u!1001 &1224487946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8884,7 +8918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312640146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0.25, z: 2.5}
+  m_LocalPosition: {x: -2, y: 0.25, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -8920,7 +8954,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &1312640150
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8932,18 +8966,18 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
-  Spatialize: 1
+  Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
   MaxDistance: 5
-  Pan2D: -1
+  Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -9249,7 +9283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324312926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0.25, z: -2.5}
+  m_LocalPosition: {x: -2, y: 0.25, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -9285,7 +9319,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!82 &1324312930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9297,18 +9331,18 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
-  Spatialize: 1
+  Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
   MaxDistance: 5
-  Pan2D: -1
+  Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -9468,7 +9502,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &1365656877
 GameObject:
   m_ObjectHideFlags: 0
@@ -9532,7 +9566,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
@@ -9764,12 +9798,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461144070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 929388689}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1461144072
 MonoBehaviour:
@@ -9785,7 +9819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /audio/minFrontPos
   TimeStep: 0
-  impact: {fileID: 0}
+  impact: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
 --- !u!114 &1461144073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9831,7 +9865,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!82 &1461144076
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9844,7 +9878,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ba8b2bb4fc7e9342a7e538a51a78c01, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.343
+  m_Volume: 0.762
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9853,7 +9887,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 5
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -15316,7 +15350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1560167961
 Transform:
   m_ObjectHideFlags: 0
@@ -15381,7 +15415,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &1569761387
 GameObject:
   m_ObjectHideFlags: 0
@@ -15446,7 +15480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1571879320
 Transform:
   m_ObjectHideFlags: 0
@@ -15511,7 +15545,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &1619071114
 GameObject:
   m_ObjectHideFlags: 0
@@ -15611,7 +15645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1633261056
 Transform:
   m_ObjectHideFlags: 0
@@ -15676,7 +15710,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &1635772315
 GameObject:
   m_ObjectHideFlags: 0
@@ -15835,7 +15869,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.200:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!4 &1671567166
 Transform:
   m_ObjectHideFlags: 0
@@ -17001,7 +17035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1966324659
 Transform:
   m_ObjectHideFlags: 0
@@ -17066,7 +17100,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.65.215.2:9090
 --- !u!1 &1977961810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1145726151034536050, guid: fd412acb270caef449a39d0e5f97e18a,
@@ -17091,7 +17125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1984652840
 Transform:
   m_ObjectHideFlags: 0
@@ -17156,7 +17190,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &2006517350
 GameObject:
   m_ObjectHideFlags: 0
@@ -17175,7 +17209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006517351
 Transform:
   m_ObjectHideFlags: 0
@@ -17243,7 +17277,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.193.51:9090
+  RosBridgeServerUrl: ws://100.67.197.232:9090
 --- !u!1 &2030014265 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 146900, guid: 4d293c8e162f3874b982baadd71153d2,
@@ -17566,7 +17600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 929388689}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2091564108
 MonoBehaviour:

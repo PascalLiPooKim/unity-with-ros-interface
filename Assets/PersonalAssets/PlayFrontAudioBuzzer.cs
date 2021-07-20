@@ -49,12 +49,32 @@ namespace RosSharp.RosBridgeClient
             
                 if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.8f)
                 {
-                    //audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
+                //audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
 
-                    audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 5f) - 0.5f, 0.1f, 2.0f);
+                //audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 5f) - 0.5f, 0.1f, 2.0f);
+
+                //audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 3.5f) + 0.5f, 1.0f, 2.8f);
+
+                    float val = 1.0f / Mathf.Pow(closestDistance.data, 1f / 3.5f) + 0.5f;
+
+                    if (val <= 1.5f)
+				    {
+                        audioSource.pitch = 1.2f;
+                    }
+                    else if (val > 1.5f && val <= 1.8f)
+				    {
+                        audioSource.pitch = 1.7f;
+                    }
+				    else
+				    {
+                        audioSource.pitch = 2.0f;
+                    }
+
+                    //if (1.0f / Mathf.Pow(closestDistance.data, 1f / 5f) + 1f )
+
                 // audioSource.Play();
                 //print(Mathf.Pow(closestDistance.data, 1f / 9f));
-                    if (!audioSource.isPlaying)
+                if (!audioSource.isPlaying)
 				    {
                         audioSource.PlayOneShot(impact, 1f);
                     }
