@@ -122,6 +122,11 @@ namespace RosSharp.RosBridgeClient
                 pointCloudRenderer.sourceData = pointCloudData;
                 isMessageReceived = false;
             }
+            else
+			{
+                pointCloudRenderer.sourceData = null;
+
+            }
 
             
         }
