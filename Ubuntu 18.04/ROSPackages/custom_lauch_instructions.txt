@@ -1,31 +1,47 @@
 To record rosbag:rosbag record -O NAME.bag /ground_truth/state
 To plot Husky trajectory after run: rosrun commands_to_unity plot_husky_trajectory.py
 
-For default Husky position and clearpath_playpen.world (Husky_V2):
-1. roslaunch husky_gazebo husky_playpen_v2.launch
-2. roslaunch husky_gazebo husky_teleop_v2.launch
-3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
-4. roslaunch rosbridge_server rosbridge_websocket.launch
-5. rosrun commands_to_unity keyboard_hits
 
-For default Husky position and clearpath_playpen.world (Husky_V3):
+**************************************** TEST ****************************************
+
+For preliminary tracking test:
 -New file(s) created and to used: 
-husky_teleop_prelim.launch
+set_model_state_prelim_tracking.py, husky_prelim_tracking.launch
+1. roslaunch husky_gazebo husky_prelim_tracking.launch
+2. roslaunch husky_gazebo [husky_teleop_3FAS, husky_teleop_5FAS, husky_teleop_3DAS].launch
+3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
+4. roslaunch rosbridge_server rosbridge_websocket.launch
+5. rosrun commands_to_unity set_model_state_prelim_trackin.py
+
+
+For default Husky position and clearpath_playpen.world (Husky_3_fixedAudioSources):
 1. roslaunch husky_gazebo husky_playpen_v2.launch
-2. roslaunch husky_gazebo husky_teleop_prelim.launch
+2. roslaunch husky_gazebo husky_teleop_3FAS.launch
 3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
 4. roslaunch rosbridge_server rosbridge_websocket.launch
 5. rosrun commands_to_unity keyboard_hits
 
-For default Husky position and clearpath_playpen.world (Husky_Dynamic):
+For default Husky position and clearpath_playpen.world (Husky_5_fixedAudioSources):   
 -New file(s) created and to used: 
-husky_teleop_dynamic.launch
+husky_teleop_5FAS.launch
 1. roslaunch husky_gazebo husky_playpen_v2.launch
-2. roslaunch husky_gazebo husky_teleop_dynamic.launch
+2. roslaunch husky_gazebo husky_teleop_5FAS.launch
 3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
 4. roslaunch rosbridge_server rosbridge_websocket.launch
 5. rosrun commands_to_unity keyboard_hits
 
+For default Husky position and clearpath_playpen.world (3_dynamicAudioSources):
+-New file(s) created and to used: 
+husky_teleop_3DAS.launch
+1. roslaunch husky_gazebo husky_playpen_v2.launch
+2. roslaunch husky_gazebo husky_teleop_3DAS.launch
+3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
+4. roslaunch rosbridge_server rosbridge_websocket.launch
+5. rosrun commands_to_unity keyboard_hits
+
+
+******************************* EVALUATION *******************************
+// All 2. files are using laserscan_to_pointcloud_with_KdTree_3FAS.cpp
 
 For default Husky position and custom gazebo_course_1_easy.world:
 -New file(s) created and to used: husky_gazebo_course_1_easy.launch
