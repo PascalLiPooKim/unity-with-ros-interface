@@ -1,3 +1,6 @@
+To record rosbag:rosbag record -O NAME.bag /ground_truth/state
+To plot Husky trajectory after run: rosrun commands_to_unity plot_husky_trajectory.py
+
 For default Husky position and clearpath_playpen.world (Husky_V2):
 1. roslaunch husky_gazebo husky_playpen_v2.launch
 2. roslaunch husky_gazebo husky_teleop_v2.launch
