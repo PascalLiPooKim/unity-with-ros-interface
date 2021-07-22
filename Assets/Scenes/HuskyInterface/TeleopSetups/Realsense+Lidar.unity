@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 162388181}
   - component: {fileID: 162388184}
   m_Layer: 0
-  m_Name: Husky_V2
+  m_Name: Husky_3_fixedAudioSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5849,7 +5849,7 @@ GameObject:
   - component: {fileID: 929388687}
   - component: {fileID: 929388686}
   m_Layer: 0
-  m_Name: Husky_Dynamic
+  m_Name: Husky_3_dynamicAudioSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15817,7 +15817,7 @@ GameObject:
   - component: {fileID: 1671567164}
   - component: {fileID: 1671567163}
   m_Layer: 0
-  m_Name: Husky_V3
+  m_Name: Husky_5_fixedAudioSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
