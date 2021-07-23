@@ -11,7 +11,7 @@ set_model_state_prelim_tracking.py, husky_prelim_tracking.launch
 2. roslaunch husky_gazebo [husky_teleop_3FAS, husky_teleop_5FAS, husky_teleop_3DAS].launch
 3. roslaunch rtabmap_helper mapdata_to_pointcloud.launch
 4. roslaunch rosbridge_server rosbridge_websocket.launch
-5. rosrun commands_to_unity set_model_state_prelim_trackin.py
+5. rosrun commands_to_unity set_model_state_prelim_tracking.py
 
 
 For default Husky position and clearpath_playpen.world (Husky_3_fixedAudioSources):
