@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="pcl_mapdata_topic" default="/rtabmap_helper/pcl_mapdata"/>
+    <arg name="pcl_data_topic" default="/rtabmap_helper/pcl_frame"/>
+    <arg name="voxelsize" default="0.05"/>
+    <arg name="camera_frame" default="/camera_realsense_gazebo"/>
+
+    <param name="pcl_mapdata_topic" value="$(arg pcl_mapdata_topic)"/>
+    <param name="pcl_data_topic" value="$(arg pcl_data_topic)"/>
+    <param name="voxelsize" value="$(arg voxelsize)"/>
+    <param name="camera_frame" value="$(arg camera_frame)"/>
+
+    <node pkg="rtabmap_helper" name="mapdata_to_pointcloud" type="mapdata_to_pointcloud" output="screen">
+    </node>
+</launch>

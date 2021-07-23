@@ -1,0 +1,5 @@
+<launch>
+    <arg name="topic" default="test" />
+    <node name="lineDetect" pkg="ros_camera" type="lineDetect" /> 
+    <node name="yawPID" pkg="ros_camera" type="yawPID" />
+</launch>

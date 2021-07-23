@@ -1,0 +1,8 @@
+prefix=/home/pascal/catkin_ws/devel
+
+Name: image_tools
+Description: Description of image_tools
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

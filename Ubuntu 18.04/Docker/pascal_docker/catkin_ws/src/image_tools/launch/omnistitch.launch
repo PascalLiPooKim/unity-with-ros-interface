@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="src_width" default="960"/>
+    <arg name="src_height" default="960"/>
+    <arg name="out_width" default="960"/>
+    <arg name="out_height" default="480"/>
+    <arg name="buffer" default="50"/>
+    <arg name="left_image_topic" default="/omnicam/front/image_raw"/>
+    <arg name="right_image_topic" default="/omnicam/back/image_raw"/>
+    <arg name="visualise" default="false"/>
+    <arg name="update_rate" default="10"/>
+
+    <param name="src_width" value="$(arg src_width)"/>
+    <param name="src_height" value="$(arg src_height)"/>
+    <param name="out_width" value="$(arg out_width)"/>
+    <param name="out_height" value="$(arg out_height)"/>
+    <param name="buffer" value="$(arg buffer)"/>
+    <param name="left_image_topic" value="$(arg left_image_topic)"/>
+    <param name="right_image_topic" value="$(arg right_image_topic)"/>
+    <param name="visualise" value="$(arg visualise)"/>
+    <param name="update_rate" value="$(arg update_rate)"/>
+    <node pkg="image_tools" name="omnistitch" type="omnistitch" output="screen">
+    </node>
+</launch>

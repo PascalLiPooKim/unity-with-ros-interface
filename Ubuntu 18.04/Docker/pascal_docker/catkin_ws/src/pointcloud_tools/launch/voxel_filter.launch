@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="pcl_topic" default="/realsense/depth/color/points"/>
+    <arg name="pcl_filtered_topic" default="/realsense/depth/color/points/filtered"/>
+    <arg name="voxel_size" default="0.05"/>
+    <arg name="update_rate" default="120"/> <!--30-->
+    <arg name="transform" default="false"/>
+    <arg name="frame" default=""/>
+
+    <param name="pcl_topic" value="$(arg pcl_topic)"/>
+    <param name="pcl_filtered_topic" value="$(arg pcl_filtered_topic)"/>
+    <param name="voxel_size" value="$(arg voxel_size)"/>
+    <param name="update_rate" type="int" value="$(arg update_rate)"/>
+    <param name="transform" type="string" value="$(arg transform)"/>
+    <param name="frame" type="string" value="$(arg frame)">
+
+    <node pkg="pointcloud_tools" name="voxel_filter" type="voxel_filter" output="screen"/>
+</launch>

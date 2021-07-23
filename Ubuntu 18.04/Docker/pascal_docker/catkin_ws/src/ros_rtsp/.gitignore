@@ -1,0 +1,4 @@
+.vscode/
+src/rtsp_server
+src/.vscode/
+src/.udpStream.py

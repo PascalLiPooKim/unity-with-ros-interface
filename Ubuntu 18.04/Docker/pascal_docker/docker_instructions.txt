@@ -1,0 +1,5 @@
+On PC lab:
+
+
+cd ~/docker/pascal_docker
+sudo sh terminal.sh

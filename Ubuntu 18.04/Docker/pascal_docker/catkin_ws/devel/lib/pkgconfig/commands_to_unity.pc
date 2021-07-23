@@ -1,0 +1,8 @@
+prefix=/home/pascal/catkin_ws/devel
+
+Name: commands_to_unity
+Description: Description of commands_to_unity
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lcommands_to_unity
+Requires: roscpp rospy std_msgs roslib message_runtime

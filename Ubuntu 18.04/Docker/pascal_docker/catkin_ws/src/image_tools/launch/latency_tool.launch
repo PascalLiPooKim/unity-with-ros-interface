@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="out_width" default="640"/>
+    <arg name="out_height" default="480"/>
+    <arg name="visualise" default="false"/>
+    <arg name="updaterate" default="30"/>
+
+    <param name="out_width" value="$(arg out_width)"/>
+    <param name="out_height" value="$(arg out_height)"/>
+    <param name="visualise" value="$(arg visualise)"/>
+    <param name="updaterate" value="$(arg updaterate)"/>
+    <node pkg="image_tools" name="response_delay" type="response_delay" output="screen">
+    </node>
+</launch>
