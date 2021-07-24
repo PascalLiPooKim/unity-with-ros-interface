@@ -1,0 +1,39 @@
+Gazebo multi-robot simulator, version 9.18.0
+Copyright (C) 2012 Open Source Robotics Foundation.
+Released under the Apache 2 License.
+http://gazebosim.org
+
+
+(1627048395 759847813) [Msg] Waiting for master.
+(1627048395 763879320) [Msg] Connected to gazebo master @ http://127.0.0.1:11345
+(1627048395 763903696) [Msg] Publicized address: 192.168.1.137
+(1627048396 409692528) [Msg] Loading world file [/home/pascalwlpk/catkin_ws/src/husky/husky_gazebo/worlds/prelim_tracking.world]
+(1627048398 751835227) applying Gaussian noise model with mean 0, stddev 1, bias 4.07875
+(1627048398 751878084) applying Gaussian noise model with mean 0, stddev 1, bias 4.21194
+(1627048398 751909005) applying Gaussian noise model with mean 0, stddev 1, bias 1.32156
+(1627048398 751939136) applying Gaussian noise model with mean 0, stddev 0.1, bias -0.123622
+(1627048398 751967831) applying Gaussian noise model with mean 0, stddev 0.1, bias -0.0873452
+(1627048398 751986080) applying Gaussian noise model with mean 0, stddev 0.2, bias 0.327494
+(1627048398 781843055) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "Firetruck_Body". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "Firetruck_Axle". Use the value of `d` for dissolve (line 22 in .mtl.)
+Both `d` and `Tr` parameters defined for "Firetruck_Wheels". Use the value of `d` for dissolve (line 36 in .mtl.)
+
+(1627048399 358324019) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "SUV_Body". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "SUV_Wheels". Use the value of `d` for dissolve (line 22 in .mtl.)
+
+(1627048399 374429190) ODESliderJoint::SetAnchor not implemented.
+(1627048399 374491682) ODESliderJoint::SetAnchor not implemented.
+(1627048399 378288367) Init world[default]
+(1627048399 679599348) applying Gaussian noise model with mean 0, stddev 0.007, bias 0
+(1627048399 681938367) applying Gaussian noise model with mean 0, stddev 0.007, bias 0
+(1627048399 684316213) applying Gaussian noise model with mean 0, stddev 0.007, bias -0
+(1627048399 686561588) applying Gaussian noise model with mean 0, stddev 0.007, bias 0
+(1627048400 626135439) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048400 626990146) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048400 698009446) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048400 698671544) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048400 953920607) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "Hybrid". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "Wheels3". Use the value of `d` for dissolve (line 22 in .mtl.)
+Both `d` and `Tr` parameters defined for "Hybrid_Interior". Use the value of `d` for dissolve (line 36 in .mtl.)
+Both `d` and `Tr` parameters defined for "Windows". Use the value of `d` for dissolve (line 50 in .mtl.)
+

@@ -135,8 +135,9 @@ class LaserToPointcloud{
         backSearchPoint.z = 0.0f;
 
         pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
-        kdtree.setInputCloud(cloudOutput);
-
+        if (cloudOutput->size() > 0){
+		    kdtree.setInputCloud(cloudOutput);
+	    }
 
         pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);

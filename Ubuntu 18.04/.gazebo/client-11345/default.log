@@ -1,0 +1,29 @@
+Gazebo multi-robot simulator, version 9.18.0
+Copyright (C) 2012 Open Source Robotics Foundation.
+Released under the Apache 2 License.
+http://gazebosim.org
+
+
+(1627048395 755282788) [Msg] Waiting for master.
+(1627048395 763905969) [Msg] Connected to gazebo master @ http://127.0.0.1:11345
+(1627048395 763933815) [Msg] Publicized address: 192.168.1.137
+(1627048395 764839093) Loaded .ini file from: "/home/pascalwlpk/.gazebo/gui.ini"
+(1627048395 986693316) [Wrn] [GuiIface.cc:120] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+(1627048396 674554950) Invalid filename or directory["/home/pascalwlpk/Desktop/custom_lauch_instructions.txt"] in GAZEBO_MODEL_PATH. It's not a good idea to put extra files in a GAZEBO_MODEL_PATH because the file structure may be modified by Gazebo.
+(1627048397 304401731) No spacenav daemon found. Spacenav functionality is disabled
+(1627048397 425807554) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "Hybrid". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "Wheels3". Use the value of `d` for dissolve (line 22 in .mtl.)
+Both `d` and `Tr` parameters defined for "Hybrid_Interior". Use the value of `d` for dissolve (line 36 in .mtl.)
+Both `d` and `Tr` parameters defined for "Windows". Use the value of `d` for dissolve (line 50 in .mtl.)
+
+(1627048397 800946103) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048397 802012738) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048397 868294856) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048397 868929464) [Wrn] [ColladaLoader.cc:1918] Triangle input semantic: 'COLOR' is currently not supported
+(1627048399 831245760) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "SUV_Body". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "SUV_Wheels". Use the value of `d` for dissolve (line 22 in .mtl.)
+
+(1627048400 13325415) [Wrn] [OBJLoader.cc:80] Both `d` and `Tr` parameters defined for "Firetruck_Body". Use the value of `d` for dissolve (line 8 in .mtl.)
+Both `d` and `Tr` parameters defined for "Firetruck_Axle". Use the value of `d` for dissolve (line 22 in .mtl.)
+Both `d` and `Tr` parameters defined for "Firetruck_Wheels". Use the value of `d` for dissolve (line 36 in .mtl.)
+

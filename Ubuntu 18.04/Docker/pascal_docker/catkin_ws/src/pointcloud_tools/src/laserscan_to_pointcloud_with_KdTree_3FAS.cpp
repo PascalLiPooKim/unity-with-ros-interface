@@ -130,9 +130,9 @@ class LaserToPointcloud{
         backSearchPoint.z = 0.0f;
 
         pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
-	if (cloudOutput->size() > 0){
-		kdtree.setInputCloud(cloudOutput);
-	}
+	    if (cloudOutput->size() > 0){
+		    kdtree.setInputCloud(cloudOutput);
+	    }
         
 
 
