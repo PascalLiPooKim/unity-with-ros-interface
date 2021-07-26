@@ -63,9 +63,17 @@ namespace RosSharp.RosBridgeClient
 		{
             if (measurementStatus.data == 1)
 			{
-                GameObject.Find("Husky_3_fixedAudioSources").SendMessage("Finish");
-                GameObject.Find("Husky_5_fixedAudioSources").SendMessage("Finish");
-                GameObject.Find("Husky_3_dynamicAudioSources").SendMessage("Finish");
+                if (GameObject.Find("Husky_3_fixedAudioSources")){
+                    GameObject.Find("Husky_3_fixedAudioSources").SendMessage("Finish");
+                }
+                else if (GameObject.Find("Husky_5_fixedAudioSources")){
+                    GameObject.Find("Husky_5_fixedAudioSources").SendMessage("Finish");
+                }
+                else if (GameObject.Find("Husky_3_dynamicAudioSources")){
+                    GameObject.Find("Husky_3_dynamicAudioSources").SendMessage("Finish");
+                }
+
+
             }
             else if (measurementStatus.data == 0)
             {

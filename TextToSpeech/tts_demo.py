@@ -3,7 +3,7 @@ from playsound import playsound
 import os
 import pyttsx3
 
-path = "./tts_demofile.txt"
+path = "./DistanceToGoalTTS.txt"
 # f = open(path, "r")
 # print(f.readline())
 # line = f.readline()
