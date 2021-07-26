@@ -9,6 +9,9 @@
 
 <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
 
+<node pkg="commands_to_unity" name="keyboard_hits" 
+    type="keyboard_hits" output="screen"/>
+
 <node pkg="rosbag" type="record" name="husky_course_1_medium_3FAS"
        args="record -o $(find custom_husky_gazebo)/bags/husky_course_1_medium_3FAS /ground_truth/state"/>
 
