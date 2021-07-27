@@ -40,6 +40,7 @@ namespace RosSharp.RosBridgeClient
         private float nextTTS = 0.0f;
         public float period = 1000.0f;
         int i = 0;
+        public string path = "./TTS-Texts/DistanceToGoalTTS.txt";
 
         protected override void Start()
         {
@@ -56,7 +57,7 @@ namespace RosSharp.RosBridgeClient
                 TextToSpeech();
             }
 
-            TextToSpeech();
+            //TextToSpeech();
             //print(Time.deltaTime);
 
         }
@@ -86,7 +87,7 @@ namespace RosSharp.RosBridgeClient
             nextTTS += Time.deltaTime;
             if (nextTTS/100.0f > period)
 			{
-                WriteText("./DistanceToGoalTTS.txt");
+                WriteText(path);
                 nextTTS = 0;
                 print(i);
                 i += 1;

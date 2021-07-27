@@ -2,8 +2,10 @@ import gtts
 from playsound import playsound
 import os
 import pyttsx3
+from multiprocessing import Process
+import time
 
-path = "./DistanceToGoalTTS.txt"
+path = "./TTS-Texts/DistanceToGoalTTS.txt"
 # f = open(path, "r")
 # print(f.readline())
 # line = f.readline()
@@ -71,6 +73,7 @@ def text_to_speech():
 # convert this text to speech
 # count = 0
 if __name__ == '__main__':
+    time.sleep(10)
     action_process = Process(target=text_to_speech)
  
     # We start the process and we block for 5 seconds.
