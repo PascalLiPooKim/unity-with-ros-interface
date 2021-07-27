@@ -67,7 +67,7 @@ def callback(data):
     dist_msg.data = dist
 
     pub.publish(dist_msg)
-    print(xy_goal_pos, xy_husky_pos, dist)
+    #print(xy_goal_pos, xy_husky_pos, dist)
 
     rate.sleep()
 

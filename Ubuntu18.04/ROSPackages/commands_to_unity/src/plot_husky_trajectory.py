@@ -10,6 +10,7 @@ from os import listdir
 def plot_traj():
     rospack = rospkg.RosPack()
     path = rospack.get_path("commands_to_unity")
+    path = rospack.get_path("custom_husky_gazebo")
 
     for file in listdir(path + "/bags"):
         bag_path = os.path.join(path + "/bags", file)
