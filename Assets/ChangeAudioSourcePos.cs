@@ -77,7 +77,7 @@ namespace RosSharp.RosBridgeClient
 
 
             //gameObject.transform.TransformPoint(newPos);
-            gameObject.transform.position = newPos.Ros2Unity();
+            gameObject.transform.localPosition = newPos.Ros2Unity();
             
 
 

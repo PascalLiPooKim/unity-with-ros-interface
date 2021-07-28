@@ -87,34 +87,45 @@ namespace RosSharp.RosBridgeClient
 
             //Debug.Log("Number of points: " + pointCloudSize);
             //Looping through every point in the pointcloud to generate equivalent particle
-            for (int i = 0; i < pointCloudSize; i++)
+            if (pointCloudSize > 0)
             {
-                RgbPoint3 point = pointCloud.Points[i];
-                Vector3 pos = new Vector3(point.x, point.y, point.z);
+                for (int i = 0; i < pointCloudSize; i++)
+                {
+                    RgbPoint3 point = pointCloud.Points[i];
+                    Vector3 pos = new Vector3(point.x, point.y, point.z);
 
-                if (checkVector3Valid(pos))
-                {
-                    positions.Add(pos.Ros2Unity());
+                    if (checkVector3Valid(pos))
+                    {
+                        positions.Add(pos.Ros2Unity());
+                    }
+                    else
+                    {
+                        positions.Add(Vector3.zero);
+                    }
+                    if (point.rgb != null)
+                    {
+                        colors.Add(new Color32((byte)point.rgb[2], (byte)point.rgb[1], (byte)point.rgb[0], (byte)200));
+                    }
+                    else
+                    {
+                        colors.Add(new Color32((byte)0, (byte)255, (byte)0, (byte)200));
+                    }
                 }
-                else
-                {
-                    positions.Add(Vector3.zero);
-                }
-                if (point.rgb != null)
-                {
-                    colors.Add(new Color32((byte)point.rgb[2], (byte)point.rgb[1], (byte)point.rgb[0], (byte)200));
-                }
-                else
-                {
-                    colors.Add(new Color32((byte)0, (byte)255, (byte)0, (byte)200));
-                }
+
+                //Setting data in PointCloudData
+                pointCloudData = ScriptableObject.CreateInstance<Pcx.PointCloudData>();
+                pointCloudData.Initialize(positions, colors);
+                pointCloudRenderer.sourceData = pointCloudData;
+                //isMessageReceived = false;
+            }
+			else
+			{
+                pointCloudRenderer.sourceData = null;
+
             }
 
-            //Setting data in PointCloudData
-            pointCloudData = ScriptableObject.CreateInstance<Pcx.PointCloudData>();
-            pointCloudData.Initialize(positions, colors);
-            pointCloudRenderer.sourceData = pointCloudData;
             isMessageReceived = false;
+
         }
 
     }

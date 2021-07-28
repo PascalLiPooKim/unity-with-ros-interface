@@ -53,6 +53,7 @@ namespace RosSharp.RosBridgeClient
                 //audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) - 0.1f, 0.1f, 1.5f);
 
                     audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) + 1.0f, 0.1f, 2.8f);
+                    //audioSource.volume = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) - 1.0f, 0.0f, 1.0f);
 
                 // audioSource.Play();
                 //audioSource.PlayOneShot(impact, 1.0F);

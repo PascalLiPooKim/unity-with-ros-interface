@@ -390,7 +390,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!82 &130314166
 AudioSource:
   m_ObjectHideFlags: 0
@@ -667,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &162388181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,7 +1688,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!82 &361846327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2350,7 +2350,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
@@ -4141,7 +4141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &751809235
 Transform:
   m_ObjectHideFlags: 0
@@ -4209,7 +4209,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!1 &781432620
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,7 +4574,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5854,7 +5854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &929388686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5901,7 +5901,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.205:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!4 &929388689
 Transform:
   m_ObjectHideFlags: 0
@@ -6031,7 +6031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &947682431
 Transform:
   m_ObjectHideFlags: 0
@@ -6096,7 +6096,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!1 &963283829
 GameObject:
   m_ObjectHideFlags: 0
@@ -6209,8 +6209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c1a954f7732e42a4d8cbc32340480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Topic: /stop_timer
-  TimeStep: 0
 --- !u!4 &970295351
 Transform:
   m_ObjectHideFlags: 0
@@ -6338,7 +6336,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
@@ -7430,7 +7428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1142442633
 Transform:
   m_ObjectHideFlags: 0
@@ -7498,7 +7496,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!1 &1147031887
 GameObject:
   m_ObjectHideFlags: 0
@@ -9583,7 +9581,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.196.36:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!4 &1365656881
 Transform:
   m_ObjectHideFlags: 0
@@ -9882,7 +9880,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!82 &1461144076
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15347,8 +15345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c1a954f7732e42a4d8cbc32340480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Topic: 
-  TimeStep: 0
 --- !u!1 &1560167960
 GameObject:
   m_ObjectHideFlags: 0
@@ -15376,7 +15372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560167960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: -0.35}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -15497,7 +15493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1571879320
 Transform:
   m_ObjectHideFlags: 0
@@ -15562,7 +15558,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!1 &1619071114
 GameObject:
   m_ObjectHideFlags: 0
@@ -15662,7 +15658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1633261056
 Transform:
   m_ObjectHideFlags: 0
@@ -15727,7 +15723,7 @@ MonoBehaviour:
   SecondsTimeout: 10
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://100.67.197.232:9090
+  RosBridgeServerUrl: ws://192.168.1.102:9090
 --- !u!1 &1635772315
 GameObject:
   m_ObjectHideFlags: 0
@@ -17061,7 +17057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966324658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}

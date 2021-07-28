@@ -120,7 +120,7 @@ namespace RosSharp.RosBridgeClient
                 pointCloudData = ScriptableObject.CreateInstance<Pcx.PointCloudData>();
                 pointCloudData.Initialize(positions, colors);
                 pointCloudRenderer.sourceData = pointCloudData;
-                isMessageReceived = false;
+                
             }
             else
 			{
@@ -128,7 +128,7 @@ namespace RosSharp.RosBridgeClient
 
             }
 
-            
+            isMessageReceived = false;
         }
 
     }
