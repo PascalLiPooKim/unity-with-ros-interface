@@ -119,11 +119,11 @@ class LaserToPointcloud{
         // <xacro:property name="base_z_size" value="0.24750000" />
 
         rightSearchPoint.x = 0.2f; //-0.15 -> - 0.2
-        rightSearchPoint.y = -0.25f;
+        rightSearchPoint.y = -0.3f;
         rightSearchPoint.z = 0.0f;
         
         leftSearchPoint.x = 0.2f;
-        leftSearchPoint.y = 0.25f; //0.2
+        leftSearchPoint.y = 0.3f; //0.2
         leftSearchPoint.z = 0.0f;
 
         frontSearchPoint.x = 0.5f; //0.55
@@ -139,6 +139,7 @@ class LaserToPointcloud{
 		    kdtree.setInputCloud(cloudOutput);
 	    }
 
+
         pcl::KdTreeFLANN<pcl::PointXYZ> frontKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr frontFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
         passThroughFilter(cloudOutput, frontFilteredCloud, "y", -0.7f, 0.7f); // 0.35 --> 0.5
@@ -146,12 +147,12 @@ class LaserToPointcloud{
         pcl::KdTreeFLANN<pcl::PointXYZ> rightKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr rightFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
         passThroughFilter(cloudOutput, rightFilteredCloud, 
-        "x", -0.4f, 0.90f, "y", -1.55f, -0.25f);
+        "x", -0.4f, 0.90f, "y", -1.55f, -0.3f);
         // -0.5    0.6 --> 0.7  
 
         pcl::KdTreeFLANN<pcl::PointXYZ> leftKdtree;
         pcl::PointCloud<pcl::PointXYZ>::Ptr leftFilteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
-        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.90f, "y", 0.25f, 1.55f);
+        passThroughFilter(cloudOutput, leftFilteredCloud, "x", -0.4f, 0.90f, "y", 0.3f, 1.55f);
                                                                     
         
         
