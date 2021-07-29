@@ -12,12 +12,18 @@ def pose_publisher_course_3_hard():
     pose_msg_youbot.pose.position.y = -7.55
 
 
+    pose_msg_dumpster = ModelState()
+    pose_msg_dumpster.model_name = "Dumpster_0"
+
+
 
     going_left = False
     going_right = True
 
     
     rate = rospy.Rate(20)
+
+    time_thresh = rospy.Time.now() + rospy.Duration(900)
     while not rospy.is_shutdown():
 
         # for i in range(1000):
@@ -42,6 +48,13 @@ def pose_publisher_course_3_hard():
         
 
         pub.publish(pose_msg_youbot)
+
+        # if rospy.Time.now() > time_thresh:
+        #     rate.sleep()
+        #     pose_msg_dumpster.pose.position.x = 5.6
+        #     pose_msg_dumpster.pose.position.y = 2.0
+        #     pub.publish(pose_msg_dumpster)
+
         rate.sleep()
  
 if __name__ == '__main__':

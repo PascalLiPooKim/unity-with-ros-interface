@@ -5,6 +5,8 @@ import time
 from gazebo_msgs.msg import ModelState
 import numpy as np
 import rosbag
+# import tf
+# import geometry_msgs
  
 pub = rospy.Publisher('gazebo/set_model_state', ModelState, queue_size=10)
 
@@ -178,6 +180,16 @@ def move_models_near_husky():
         #     pose_publisher_prelim_static("Construction Barrel", 20.0, 20.0)
         #     pose_publisher_prelim_static("Dumpster", 0.0, -2.0)
         #     time.sleep(3)
+
+
+        elif input_key == 4:
+            move_model_around_clockwise(-2.0, 2.0, 2.0, 50)
+            
+
+        elif input_key == 5:
+            move_model_around_anticlockwise(-2.0, -2.0, 2.0, 50)
+
+
         elif input_key == 7:
             pose_publisher_prelim_static("Construction Barrel", 20.0, 20.0)
             time.sleep(1)
@@ -203,6 +215,93 @@ def move_models_near_husky():
         else:
             print("Invalid Key pressed")
 
+
+def move_model_around_clockwise(init_x, init_y, s, r):
+    pose_msg = ModelState()
+    pose_msg.model_name = "mars_rover" # Construction Barrel_1
+    
+    pose_msg.pose.position.x = init_x
+    pose_msg.pose.position.y = init_y
+
+    # quaternion = tf.transformations.quaternion_from_euler(3.14, 0.0, 0.0)
+    
+
+    # pose_msg.pose.orientation.x = quaternion[0]
+    # pose_msg.pose.orientation.y = quaternion[1]
+    # pose_msg.pose.orientation.z = quaternion[2]
+    # pose_msg.pose.orientation.w = quaternion[3]
+    pub.publish(pose_msg)
+
+    rate = rospy.Rate(r)
+
+    for i in range(100):
+        pose_msg.pose.position.x += s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+    for i in range(100):
+        pose_msg.pose.position.y -= s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+
+    for i in range(100):
+        pose_msg.pose.position.x -= s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+
+def move_model_around_anticlockwise(init_x, init_y, s, r):
+    pose_msg = ModelState()
+    pose_msg.model_name = "mars_rover" # Construction Barrel_1
+    
+    pose_msg.pose.position.x = init_x
+    pose_msg.pose.position.y = init_y
+
+    # quaternion = tf.transformations.quaternion_from_euler(3.14, 0.0, 0.0)
+    
+
+    # pose_msg.pose.orientation.x = quaternion[0]
+    # pose_msg.pose.orientation.y = quaternion[1]
+    # pose_msg.pose.orientation.z = quaternion[2]
+    # pose_msg.pose.orientation.w = quaternion[3]
+    pub.publish(pose_msg)
+
+    rate = rospy.Rate(r)
+
+    for i in range(100):
+        pose_msg.pose.position.x += s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+    for i in range(100):
+        pose_msg.pose.position.y += s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+
+    for i in range(100):
+        pose_msg.pose.position.x -= s/r
+        # bag.write("model_traj", pose_msg.pose.position)
+        print(pose_msg.pose.position.x, pose_msg.pose.position.y)
+        pub.publish(pose_msg)
+        rate.sleep()
+
+
+
+    
+
+
 if __name__ == '__main__':
       rospy.init_node('pose_publisher')
       try:
@@ -212,6 +311,9 @@ if __name__ == '__main__':
         # pose_publisher_prelim_static("r2", 0.0, 1.5)
         # pose_publisher_prelim_static("Dumpster", 0.0, -2.0)
           #pose_publisher_prelim_tracking("mars_rover", 1.0, 1.0)
+
+
         move_models_near_husky()
+        # move_model_around(-3.0, 3.0, 2.0, 50)
       except rospy.ROSInterruptException:
           pass
