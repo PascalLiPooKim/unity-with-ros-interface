@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find custom_husky_gazebo)/worlds/gazebo_SAGAT_docker_v6.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+<include file="$(find custom_husky_gazebo)/launch/husky_teleop_SAGAT.launch" />
+
+<!--<include file="$(find rtabmap_helper)/launch/mapdata_to_pointcloud.launch" />-->
+
+<!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />-->
+
+<node pkg="commands_to_unity" name="set_model_state_SAGAT" 
+    type="set_model_state_SAGAT.py" output="screen"/>
+
+
+
+
+
+</launch>

@@ -183,11 +183,11 @@ def move_models_near_husky():
 
 
         elif input_key == 4:
-            move_model_around_clockwise(-2.0, 2.0, 2.0, 50)
+            move_model_around_clockwise(-2.0, 1.0, 2.0, 50)
             
 
         elif input_key == 5:
-            move_model_around_anticlockwise(-2.0, -2.0, 2.0, 50)
+            move_model_around_anticlockwise(-2.0, -1.0, 2.0, 50)
 
 
         elif input_key == 7:
@@ -241,7 +241,7 @@ def move_model_around_clockwise(init_x, init_y, s, r):
         pub.publish(pose_msg)
         rate.sleep()
 
-    for i in range(100):
+    for i in range(50):
         pose_msg.pose.position.y -= s/r
         # bag.write("model_traj", pose_msg.pose.position)
         print(pose_msg.pose.position.x, pose_msg.pose.position.y)
@@ -282,7 +282,7 @@ def move_model_around_anticlockwise(init_x, init_y, s, r):
         pub.publish(pose_msg)
         rate.sleep()
 
-    for i in range(100):
+    for i in range(50):
         pose_msg.pose.position.y += s/r
         # bag.write("model_traj", pose_msg.pose.position)
         print(pose_msg.pose.position.x, pose_msg.pose.position.y)
