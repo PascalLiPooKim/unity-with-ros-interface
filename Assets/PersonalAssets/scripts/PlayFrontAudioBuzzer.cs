@@ -57,17 +57,22 @@ namespace RosSharp.RosBridgeClient
 
                     float val = 1.0f / Mathf.Pow(closestDistance.data, 1f / 3.5f) + 0.5f;
 
-                    if (val <= 1.5f)
+                    if (val <= 1.3f)
 				    {
                         audioSource.pitch = 1.2f;
                     }
-                    else if (val > 1.5f && val <= 1.8f)
+                    else if (val > 1.3f && val <= 1.6f)
 				    {
                         audioSource.pitch = 1.7f;
                     }
-				    else
+				    else if (val > 1.6f && val <= 1.9f)
 				    {
-                        audioSource.pitch = 2.0f;
+                        audioSource.pitch = 2.1f;
+                    }
+
+                    else
+				    {
+                        audioSource.pitch = 2.5f;
                     }
 
                     //if (1.0f / Mathf.Pow(closestDistance.data, 1f / 5f) + 1f )
