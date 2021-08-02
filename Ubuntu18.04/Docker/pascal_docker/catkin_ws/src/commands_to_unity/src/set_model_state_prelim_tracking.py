@@ -156,11 +156,11 @@ def move_models_near_husky():
 
         input_key = input()
 
-        if input_key == 1:
+        if input_key == 2:
             pose_publisher_prelim_static("Construction Barrel", 1.5, 0.0)
             time.sleep(1)
 
-        elif input_key == 2:
+        elif input_key == 1:
             # pose_publisher_prelim_static("Construction Barrel", 20.0, 20.0)
             pose_publisher_prelim_static("r2", 0.0, 1.5)
             time.sleep(1)
@@ -190,12 +190,12 @@ def move_models_near_husky():
             move_model_around_anticlockwise(-2.0, -1.0, 2.0, 50)
 
 
-        elif input_key == 7:
+        elif input_key == 8:
             pose_publisher_prelim_static("Construction Barrel", 20.0, 20.0)
             time.sleep(1)
 
 
-        elif input_key == 8:
+        elif input_key == 7:
             pose_publisher_prelim_static("r2", 20.0, 18.0)
             time.sleep(1)
 
