@@ -9,7 +9,11 @@
 
 <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
 
-<node pkg="rosbag" type="record" name="husky_prelim_tracking_3DAS"
-       args="record -o $(find custom_husky_gazebo)/bags/husky_prelim_tracking_3DAS /ground_truth/state"/>
+<!-- <node pkg="rosbag" type="record" name="husky_prelim_tracking_3DAS"
+       args="record -o $(find custom_husky_gazebo)/bags/husky_prelim_tracking_3DAS /ground_truth/state"/> -->
+
+
+<node pkg="commands_to_unity" name="set_model_state_prelim_tracking" 
+    type="set_model_state_prelim_tracking.py" output="screen"/>
 
 </launch>

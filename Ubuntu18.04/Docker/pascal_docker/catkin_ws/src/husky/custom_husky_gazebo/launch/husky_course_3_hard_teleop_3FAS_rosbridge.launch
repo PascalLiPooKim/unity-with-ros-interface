@@ -7,7 +7,7 @@
 
 <!--<include file="$(find rtabmap_helper)/launch/mapdata_to_pointcloud.launch" />-->
 
-<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+<!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />-->
 
 <include file="$(find commands_to_unity)/launch/course_3_hard_kbhit.launch" />
 
