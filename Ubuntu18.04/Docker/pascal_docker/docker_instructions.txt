@@ -6,4 +6,5 @@ sudo sh terminal.sh
 source /opt/ros/melodic/setup.bash (for websocket) or source devel/setup.bash
 
 
-ssh vr-pc@128.16.28.55 -p 32
+ssh vr-pc@128.16.28.55 -p 32 (does not work)
+ssh vr-pc@128.16.29.55 -p 32
