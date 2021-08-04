@@ -22,6 +22,11 @@
 #include <math.h>  
 
 #include <pcl/filters/passthrough.h>
+#include <pcl/filters/random_sample.h>
+
+#include <std_msgs/Bool.h>
+
+bool degradeVisual = false;
 
 class LaserToPointcloud{
     private:
@@ -30,6 +35,8 @@ class LaserToPointcloud{
     std::string pclPubTopic;
     ros::Subscriber scanSub;
     ros::Publisher pclPub;
+
+    ros::Subscriber degradeSub;
 
     sensor_msgs::PointCloud2 pc2Msg;
     int updateRate;
@@ -61,18 +68,27 @@ class LaserToPointcloud{
         nh->getParam("frame", frame);
         scanSub = nh->subscribe(scanSubTopic, 1, &LaserToPointcloud::ScanCallback, this);
         pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
+
+        degradeSub = nh->subscribe("/degrade_pointcloud", 1, &LaserToPointcloud::degradeCallback, this);
         
 
-        rightAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightDistance", 1);
-        leftAudioPub = nh->advertise<std_msgs::Float32>("/audio/minLeftDistance", 1);
-        frontAudioPub = nh->advertise<std_msgs::Float32>("/audio/minFrontDistance", 1);
-        //backAudioPub = nh->advertise<std_msgs::Float32>("/audio/minBackDistance", 1);
+        // rightAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightDistance", 1);
+        // leftAudioPub = nh->advertise<std_msgs::Float32>("/audio/minLeftDistance", 1);
+        // frontAudioPub = nh->advertise<std_msgs::Float32>("/audio/minFrontDistance", 1);
+        // backAudioPub = nh->advertise<std_msgs::Float32>("/audio/minBackDistance", 1);
 
-        frontPclPub = nh->advertise<sensor_msgs::PointCloud2>("/frontFilteredPcl", 1);
-        leftPclPub = nh->advertise<sensor_msgs::PointCloud2>("/leftFilteredPcl", 1);
-        rightPclPub = nh->advertise<sensor_msgs::PointCloud2>("/rightFilteredPcl", 1);
+        // frontPclPub = nh->advertise<sensor_msgs::PointCloud2>("/frontFilteredPcl", 1);
+        // leftPclPub = nh->advertise<sensor_msgs::PointCloud2>("/leftFilteredPcl", 1);
+        // rightPclPub = nh->advertise<sensor_msgs::PointCloud2>("/rightFilteredPcl", 1);
         
 
+    }
+
+    void degradeCallback(const std_msgs::Bool& msg){
+        ros::Rate loop_rate(updateRate);
+        degradeVisual = msg.data;
+
+        loop_rate.sleep();
     }
 
 
@@ -95,11 +111,25 @@ class LaserToPointcloud{
         }
 
         pcl_conversions::toPCL(outputHeader, cloudOutput->header);
-        // pclPub.publish(cloudOutput);
+
+        // Degrade LiDAR pointcloud
+        if (degradeVisual){
+            pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
+            pcl::RandomSample<pcl::PointXYZ> random;
+            random.setInputCloud (cloudOutput);
+            random.setSample(20);
+            random.filter (*filteredCloud);
+            ros::Duration(1.0).sleep();
+            pclPub.publish(filteredCloud);
+        }
+        else{
+            pclPub.publish(cloudOutput);
+        }
+        
 
         // Apply KdTree on final cloud output
 
-        FindClosestPoints(cloudOutput);
+        // FindClosestPoints(cloudOutput);
         
 
 	    loop_rate.sleep();
@@ -360,7 +390,7 @@ class LaserToPointcloud{
 
 
 int main(int argc, char** argv){
-    ros::init(argc, argv, "LaserToPointcloud_3FAS");
+    ros::init(argc, argv, "LaserToPointcloud");
     ros::NodeHandle nh("~");
     ROS_INFO_STREAM("Node initialised");
     ROS_INFO_STREAM("KdTree version");

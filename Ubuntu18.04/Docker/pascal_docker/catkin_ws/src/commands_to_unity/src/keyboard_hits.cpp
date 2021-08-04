@@ -8,6 +8,7 @@
 #include <fcntl.h>
 
 #include <std_msgs/Int32.h>
+#include <std_msgs/Bool.h>
 
 
 
@@ -68,6 +69,9 @@ int main (int argc, char** argv)
   ros::Publisher button_pub =
     nh.advertise<std_msgs::Int32>("/stop_timer", 1);
 
+  ros::Publisher degrade_pub =
+    nh.advertise<std_msgs::Bool>("/degrade_pointcloud", 1);
+
     ros::Rate r (100);
   while (ros::ok ())
   {
@@ -78,6 +82,7 @@ int main (int argc, char** argv)
     {
       int ch = getchar();
       std_msgs::Int32 button;
+      std_msgs::Bool degrade;
 
       if (ch == 's') // if h is pressed
       {
@@ -89,6 +94,15 @@ int main (int argc, char** argv)
         button.data = 0;
         std::cout<<"Resume timer and counter"<<std::endl;
         button_pub.publish(button);
+      }
+      else if (ch == 'd'){
+        degrade.data = true;
+        std::cout<<"Degrade point cloud"<<std::endl;
+        degrade_pub.publish(degrade);
+      }
+      else if (ch == 'u'){
+        degrade.data = false;
+        degrade_pub.publish(degrade);
       }
     }
       

@@ -222,12 +222,18 @@ target_link_libraries(laserscan_to_pointcloud ${catkin_LIBRARIES} ${PCL_LIBRARIE
 add_executable(voxel_filter src/voxel_filter.cpp)
 target_link_libraries(voxel_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
 
+add_executable(voxel_filter_with_degradation src/voxel_filter_with_degradation.cpp)
+target_link_libraries(voxel_filter_with_degradation ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
+
 # Added for KdTree
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 add_executable(laserscan_to_pointcloud_with_KdTree_3FAS src/laserscan_to_pointcloud_with_KdTree_3FAS.cpp)
 target_link_libraries(laserscan_to_pointcloud_with_KdTree_3FAS ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
+
+add_executable(laserscan_to_pointcloud_with_degradation src/laserscan_to_pointcloud_with_degradation.cpp)
+target_link_libraries(laserscan_to_pointcloud_with_degradation ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
 
 add_executable(laserscan_to_pointcloud_with_KdTree_5FAS src/laserscan_to_pointcloud_with_KdTree_5FAS.cpp)
 target_link_libraries(laserscan_to_pointcloud_with_KdTree_5FAS ${catkin_LIBRARIES} ${PCL_LIBRARIES} functions)
