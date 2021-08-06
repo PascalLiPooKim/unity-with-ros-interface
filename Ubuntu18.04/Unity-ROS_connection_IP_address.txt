@@ -1,0 +1,6 @@
+roslaunch rosbridge_server rosbridge_websocket.launch websocket_external_port:=9190
+
+Internal ip: 192.168.1.102:9090
+External ip: 128.16.29.55:9190
+
+https://github.com/RobotWebTools/rosbridge_suite/blob/develop/rosbridge_server/launch/rosbridge_websocket.launch

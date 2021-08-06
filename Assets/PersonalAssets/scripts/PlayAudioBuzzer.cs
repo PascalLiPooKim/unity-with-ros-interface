@@ -47,7 +47,7 @@ namespace RosSharp.RosBridgeClient
         {
 
             
-                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.5f)
+                if (Mathf.Pow(closestDistance.data, 1f / 2f) > 0.0f && Mathf.Pow(closestDistance.data, 1f / 2f) < 1.7f) // 1.5
                 {
                 //audioSource.pitch = Mathf.Min(1.0f/closestDistance.data, 3);
 
@@ -56,7 +56,7 @@ namespace RosSharp.RosBridgeClient
                     //audioSource.pitch = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) + 1.0f, 0.1f, 2.8f);
                     if (volumeChanged)
 				    {
-                        audioSource.volume = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) - 1.0f, 0.0f, 1.0f);
+                        audioSource.volume = Mathf.Clamp(1.0f / Mathf.Pow(closestDistance.data, 1f / 2f) - 0.5f, 0.0f, 1.0f);
                     }
 
                     float val = 1.0f / Mathf.Pow(closestDistance.data, 1f / 3.5f) + 0.5f;
