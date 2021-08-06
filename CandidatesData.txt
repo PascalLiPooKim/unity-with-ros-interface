@@ -1,2 +1,4 @@
 Candidate ID, Age, Completion Time, Number of Keystrokes
 
+ 
+3, 99, 0:45.88, 16
