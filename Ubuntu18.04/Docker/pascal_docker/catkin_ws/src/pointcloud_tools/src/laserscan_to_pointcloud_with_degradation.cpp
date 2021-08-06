@@ -117,7 +117,7 @@ class LaserToPointcloud{
             pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
             pcl::RandomSample<pcl::PointXYZ> random;
             random.setInputCloud (cloudOutput);
-            random.setSample(20);
+            random.setSample(40);
             random.filter (*filteredCloud);
             ros::Duration(1.0).sleep();
             pclPub.publish(filteredCloud);

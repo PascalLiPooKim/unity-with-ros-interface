@@ -12,6 +12,8 @@
 #include "pointcloud_tools/functions.h"
 
 #include <std_msgs/Bool.h>
+#include <cstdlib> 
+#include <ctime> 
 
 bool degradeVisual = false;
 
@@ -53,6 +55,7 @@ class VoxelFilter{
     }
 
     void PclCallback(const sensor_msgs::PointCloud2& msg){
+        //ros::Rate loop_rate(updateRate);
         ros::Rate loop_rate(updateRate);
         outputHeader = msg.header;  
 
@@ -63,12 +66,18 @@ class VoxelFilter{
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloudFiltered (new pcl::PointCloud<pcl::PointXYZRGB>);
         pcl::VoxelGrid<pcl::PointXYZRGB> voxelFilter;
         voxelFilter.setInputCloud (cloud);
-        ROS_INFO_STREAM(degradeVisual);
+        //ROS_INFO_STREAM(degradeVisual);
 
         if (degradeVisual){
-            voxelFilter.setLeafSize ((float)0.8, (float)0.8, (float)0.8);
-            ROS_INFO_STREAM("Degraded");
-            ros::Duration(1.0).sleep();
+
+            float randomVoxelSize;
+            std::srand(static_cast<unsigned int>(std::time(nullptr))); 
+            for (int i=0; i < 10; ++i){
+                randomVoxelSize = ((double) std::rand() / (RAND_MAX)) + 0.2;
+            }
+            voxelFilter.setLeafSize ((float)randomVoxelSize, (float)randomVoxelSize, (float)randomVoxelSize);
+            //ROS_INFO_STREAM("Degraded");
+            ros::Duration(0.5).sleep();
         }
         else{
             voxelFilter.setLeafSize ((float)voxelSize, (float)voxelSize, (float)voxelSize);

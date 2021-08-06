@@ -15,8 +15,8 @@
 
 <include file="$(find commands_to_unity)/launch/course_2_easy_kbhit.launch" />
 
-<node pkg="rosbag" type="record" name="husky_course_2_easy_3FAS"
-       args="record -o $(find custom_husky_gazebo)/bags/husky_course_2_easy_3FAS /ground_truth/state"/>
+<!--<node pkg="rosbag" type="record" name="husky_course_2_easy_3FAS"
+       args="record -o $(find custom_husky_gazebo)/bags/husky_course_2_easy_3FAS /ground_truth/state"/>-->
 
 <node pkg="commands_to_unity" name="get_model_state" 
     type="get_model_state_course_2.py" output="screen"/>

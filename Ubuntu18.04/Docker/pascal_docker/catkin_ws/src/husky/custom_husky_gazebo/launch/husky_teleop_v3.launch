@@ -41,10 +41,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <param name="update_rate" value="30"/>
     </node>
 
-    <!--<node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud">
+    <node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_degradation">
       <param name="frame" value="base_link"/>
       <param name="update_rate" value="30"/>
-    </node>-->
+    </node>
 
 	<node name="laserscan_to_pointcloud_with_KdTree_3FAS" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_KdTree_3FAS">
       <param name="frame" value="base_link"/>
