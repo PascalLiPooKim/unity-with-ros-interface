@@ -68,6 +68,7 @@
     <Compile Include="Assets\ColorOrganiser.cs" />
     <Compile Include="Assets\GoalTextToSpeech.cs" />
     <Compile Include="Assets\MouseWaypoint.cs" />
+    <Compile Include="Assets\MuteOneChannel.cs" />
     <Compile Include="Assets\PersonalAssets\scripts\GoalBox.cs" />
     <Compile Include="Assets\PersonalAssets\scripts\Meaurement.cs" />
     <Compile Include="Assets\PersonalAssets\scripts\PcxFrontFilteredPointCloudSubscriber.cs" />

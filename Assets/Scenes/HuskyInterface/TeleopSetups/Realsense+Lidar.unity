@@ -253,7 +253,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 0.5
   MaxDistance: 2
-  Pan2D: 0
+  Pan2D: -1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -414,8 +414,8 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 100
-  Pan2D: 0
+  MaxDistance: 5
+  Pan2D: 1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -669,7 +669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &162388181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,8 +1713,8 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.5
-  MaxDistance: 100
-  Pan2D: 0
+  MaxDistance: 5
+  Pan2D: -1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -1830,7 +1830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374404046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.25, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162388183}
@@ -1890,7 +1890,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 0.5
   MaxDistance: 2
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -2300,7 +2300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459455254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.25, z: -3}
+  m_LocalPosition: {x: 2.5, y: 0.25, z: -3.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   Topic: /audio/minRightBackDistance
   TimeStep: 0
   impact: {fileID: 8300000, guid: 571c17644771cd844adffaa320a3aef2, type: 3}
-  volumeChanged: 1
+  volumeChanged: 0
 --- !u!114 &459455257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,13 +2354,13 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.1
+  MinDistance: 4.9504952
   MaxDistance: 5
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -4506,7 +4506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795294414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 1.75}
+  m_LocalPosition: {x: 0, y: 0.25, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -4579,8 +4579,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0
-  MaxDistance: 5
+  MinDistance: 6
+  MaxDistance: 7
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -6291,7 +6291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974138943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.25, z: 3}
+  m_LocalPosition: {x: 4, y: 0.25, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -6312,7 +6312,7 @@ MonoBehaviour:
   Topic: /audio/minRightFrontDistance
   TimeStep: 0
   impact: {fileID: 8300000, guid: 571c17644771cd844adffaa320a3aef2, type: 3}
-  volumeChanged: 1
+  volumeChanged: 0
 --- !u!114 &974138946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6345,13 +6345,13 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.1
-  MaxDistance: 5
-  Pan2D: 0
+  MinDistance: 6.4356437
+  MaxDistance: 6.5
+  Pan2D: 1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -7805,7 +7805,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -8943,7 +8943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312640146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.25, z: 3}
+  m_LocalPosition: {x: -4, y: 0.25, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -8964,7 +8964,7 @@ MonoBehaviour:
   Topic: /audio/minLeftFrontDistance
   TimeStep: 0
   impact: {fileID: 8300000, guid: c2838556e325a194cacb2fdb3a9e59f9, type: 3}
-  volumeChanged: 1
+  volumeChanged: 0
 --- !u!114 &1312640149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8997,13 +8997,13 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.1
-  MaxDistance: 5
-  Pan2D: 0
+  MinDistance: 6.4356437
+  MaxDistance: 6.5
+  Pan2D: -1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -9309,7 +9309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324312926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.25, z: -3}
+  m_LocalPosition: {x: -3, y: 0.25, z: -3.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1671567166}
@@ -9330,7 +9330,7 @@ MonoBehaviour:
   Topic: /audio/minLeftBackDistance
   TimeStep: 0
   impact: {fileID: 8300000, guid: c2838556e325a194cacb2fdb3a9e59f9, type: 3}
-  volumeChanged: 1
+  volumeChanged: 0
 --- !u!114 &1324312929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9363,13 +9363,13 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.1
+  MinDistance: 4.9504952
   MaxDistance: 5
-  Pan2D: 0
+  Pan2D: -1
   rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -15850,7 +15850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1671567163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16053,7 +16053,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732604845}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!54 &1732604848
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16248,7 +16248,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743942816}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1743942819
 Camera:
   m_ObjectHideFlags: 0
