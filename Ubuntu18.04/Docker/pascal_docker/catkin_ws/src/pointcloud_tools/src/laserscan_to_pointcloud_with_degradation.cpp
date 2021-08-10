@@ -25,6 +25,9 @@
 #include <pcl/filters/random_sample.h>
 
 #include <std_msgs/Bool.h>
+#include <cstdlib> 
+#include <ctime> 
+
 
 bool degradeVisual = false;
 
@@ -112,14 +115,20 @@ class LaserToPointcloud{
 
         pcl_conversions::toPCL(outputHeader, cloudOutput->header);
 
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
         // Degrade LiDAR pointcloud
         if (degradeVisual){
             pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
             pcl::RandomSample<pcl::PointXYZ> random;
             random.setInputCloud (cloudOutput);
-            random.setSample(40);
+            random.setSample(50);
             random.filter (*filteredCloud);
-            ros::Duration(1.0).sleep();
+
+            float delay = ((double) std::rand() / (RAND_MAX)) - 0.5;
+            // std::cout<< "LiDAR: ";
+            // std::cout<< delay << std::endl;
+            ros::Duration(delay).sleep();
             pclPub.publish(filteredCloud);
         }
         else{

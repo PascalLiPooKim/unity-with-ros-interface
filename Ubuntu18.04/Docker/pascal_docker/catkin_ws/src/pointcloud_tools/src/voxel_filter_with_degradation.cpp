@@ -77,7 +77,10 @@ class VoxelFilter{
             }
             voxelFilter.setLeafSize ((float)randomVoxelSize, (float)randomVoxelSize, (float)randomVoxelSize);
             //ROS_INFO_STREAM("Degraded");
-            ros::Duration(0.5).sleep();
+            float delay = ((double) std::rand() / (RAND_MAX)) - 0.5;
+
+            std::cout<< delay << std::endl;
+            ros::Duration(delay).sleep();
         }
         else{
             voxelFilter.setLeafSize ((float)voxelSize, (float)voxelSize, (float)voxelSize);
