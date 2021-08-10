@@ -15552,7 +15552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sourceData: {fileID: 0}
   _pointTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _pointSize: 0.07
+  _pointSize: 0.05
   testShader: {fileID: 0}
   _pointShader: {fileID: 4800000, guid: 1baec256dca7c1642b87d05510e75a3f, type: 3}
   _diskShader: {fileID: 4800000, guid: 7ebf1f15e5b03014d92704caa6c97e2e, type: 3}
