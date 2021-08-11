@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BlockCamera.cs" />
     <Compile Include="Assets\ChangeAudioSourcePos.cs" />
     <Compile Include="Assets\ColorOrganiser.cs" />
     <Compile Include="Assets\GoalTextToSpeech.cs" />
