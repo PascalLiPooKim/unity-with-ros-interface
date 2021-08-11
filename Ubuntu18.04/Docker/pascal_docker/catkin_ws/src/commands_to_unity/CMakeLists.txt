@@ -137,6 +137,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
  add_executable(keyboard_hits src/keyboard_hits.cpp)
+add_executable(pause_unpause_gazebo src/pause_unpause_gazebo.cpp)
+
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,6 +153,10 @@ include_directories(
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(keyboard_hits
+   ${catkin_LIBRARIES}
+ )
+
+target_link_libraries(pause_unpause_gazebo
    ${catkin_LIBRARIES}
  )
 
