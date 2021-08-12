@@ -67,7 +67,7 @@ class LaserToPointcloud{
 	    nh->param<int>("update_rate", updateRate, 30);
         nh->getParam("frame", frame);
         scanSub = nh->subscribe(scanSubTopic, 1, &LaserToPointcloud::ScanCallback, this);
-        pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
+        // pclPub = nh->advertise<sensor_msgs::PointCloud2>(pclPubTopic, 1);
         
 
         rightFrontAudioPub = nh->advertise<std_msgs::Float32>("/audio/minRightFrontDistance", 1);
@@ -106,7 +106,7 @@ class LaserToPointcloud{
         }
 
         pcl_conversions::toPCL(outputHeader, cloudOutput->header);
-        pclPub.publish(cloudOutput);
+        // pclPub.publish(cloudOutput);
 
         // Apply KdTree on final cloud output
 

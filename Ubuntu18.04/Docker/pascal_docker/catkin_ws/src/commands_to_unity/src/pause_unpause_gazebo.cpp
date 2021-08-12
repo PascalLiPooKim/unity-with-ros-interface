@@ -68,7 +68,7 @@ int main (int argc, char** argv)
   ros::NodeHandle nh ("~");
 
 
-  ros::Rate r (30);
+  ros::Rate r (100);
 
   char keyPressed;
 
@@ -90,11 +90,13 @@ int main (int argc, char** argv)
     std::cin >> keyPressed;
     if (keyPressed == 'p'){
         pauseGazebo.call(pauseSrv);
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Pause simulation" << std::endl;
         pause.data = true;
         // pause_sim.publish(pause);
     }
     else if (keyPressed == 'r'){
         unpauseGazebo.call(unpauseSrv);
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Unpause simulation" << std::endl;
         pause.data = false;
         
     }

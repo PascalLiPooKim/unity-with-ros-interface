@@ -122,7 +122,7 @@ class LaserToPointcloud{
             pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud(new pcl::PointCloud<pcl::PointXYZ>);
             pcl::RandomSample<pcl::PointXYZ> random;
             random.setInputCloud (cloudOutput);
-            random.setSample(50);
+            random.setSample(30);
             random.filter (*filteredCloud);
 
             float delay = ((double) std::rand() / (RAND_MAX)) - 0.5;

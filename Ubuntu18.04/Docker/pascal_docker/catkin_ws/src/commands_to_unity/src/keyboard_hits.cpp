@@ -87,21 +87,29 @@ int main (int argc, char** argv)
       if (ch == 's') // if h is pressed
       {
         button.data = 1;
-        std::cout<<"Stop timer and counter"<<std::endl;
+        // std::cout<<"Stop timer and counter"<<std::endl;
+        std::cout << std::endl;
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Stop timer and counter" << std::endl;
         button_pub.publish(button);
       } 
       else if (ch == 'r'){
         button.data = 0;
-        std::cout<<"Resume timer and counter"<<std::endl;
+        // std::cout<<"Resume timer and counter"<<std::endl;
+        std::cout << std::endl;
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Resume timer and counter" << std::endl;
         button_pub.publish(button);
       }
       else if (ch == 'd'){
         degrade.data = true;
-        std::cout<<"Degrade point cloud"<<std::endl;
+        // std::cout<<"Degrade point cloud"<<std::endl;
+        std::cout << std::endl;
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Degrade RGBD and LiDAR visual feedback" << std::endl;
         degrade_pub.publish(degrade);
       }
       else if (ch == 'u'){
         degrade.data = false;
+        std::cout << std::endl;
+        std::cout << "[ INFO] [" << ros::Time::now() << "]: Deactivate vision degradation" << std::endl;
         degrade_pub.publish(degrade);
       }
     }

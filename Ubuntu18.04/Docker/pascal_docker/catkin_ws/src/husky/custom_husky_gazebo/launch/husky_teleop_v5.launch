@@ -29,7 +29,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="omnicamera_enabled" default="true"/>
   <arg name="realsense_enabled" default="true"/>
 
-  <include file="$(find custom_husky_gazebo)/launch/spawn_husky_SAGAT.launch">
+  <include file="$(find husky_gazebo)/launch/spawn_husky_v4.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
     <arg name="realsense_enabled" value="$(arg realsense_enabled)"/>
     <arg name="omnicamera_enabled" value="$(arg omnicamera_enabled)"/>
@@ -41,17 +41,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <param name="update_rate" value="30"/>
     </node>
 
-    <node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud">
+    <node name="laserscan_to_pointcloud" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_degradation">
       <param name="frame" value="base_link"/>
       <param name="update_rate" value="30"/>
     </node>
 
-	<node name="laserscan_to_pointcloud_with_KdTree_3FAS" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_KdTree_5FAS">
+	<node name="laserscan_to_pointcloud_with_KdTree_5FAS" pkg="pointcloud_tools" type="laserscan_to_pointcloud_with_KdTree_3FAS">
       <param name="frame" value="base_link"/>
       <param name="update_rate" value="30"/>
     </node>
 
-    <node name="voxel_filter" pkg="pointcloud_tools" type="voxel_filter">
+    <node name="voxel_filter" pkg="pointcloud_tools" type="voxel_filter_with_degradation">
       <param name="frame" value="base_link"/>
       <param name="voxel_size" value="0.1"/>
       <param name="update_rate" value="10"/>
