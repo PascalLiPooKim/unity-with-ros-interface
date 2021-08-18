@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+  <link name="sensors_link">
+    <visual>
+      <origin xyz="0 0 0.003" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://ucl03_husky/meshes/ucl03.STL"/>
+      </geometry>
+      <material name="white">
+       <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.003" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://ucl03_husky/meshes/ucl03.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="sensors_joint" type="fixed">
+    <parent link="top_plate_link" />
+    <child link="sensors_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  </joint>
+   
+  <link name="laser"> </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="top_plate_front_link" />
+    <child link="laser" />
+    <origin xyz="-0.03 0 0.06" rpy="3.14159 0 0"/>
+  </joint>
+
+  <link name="gps"> </link>
+
+  <joint name="gps_joint" type="fixed">
+    <parent link="top_plate_rear_link" />
+    <child link="gps" />
+    <origin xyz="0.06 -0.255 0.015" />
+  </joint>
+
+</robot>

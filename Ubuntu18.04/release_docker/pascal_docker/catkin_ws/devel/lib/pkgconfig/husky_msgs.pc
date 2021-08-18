@@ -1,0 +1,8 @@
+prefix=/home/pascal/catkin_ws/devel
+
+Name: husky_msgs
+Description: Description of husky_msgs
+Version: 0.4.5
+Cflags: -I/home/pascal/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: std_msgs message_runtime

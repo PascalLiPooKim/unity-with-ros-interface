@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="scan_topic" default="/scan"/>
+    <arg name="pcl_topic" default="/scan/pointcloud"/>
+    <arg name="update_rate" default="30"/>
+    <arg name="frame" default=""/>
+
+    <param name="scan_topic" value="$(arg scan_topic)"/>
+    <param name="pcl_topic" value="$(arg pcl_topic)"/>
+    <param name="update_rate" value="$(arg update_rate)"/>
+    <param name="frame" value="$(arg frame)"/>
+    <node pkg="pointcloud_tools" name="laserscan_to_pointcloud" type="laserscan_to_pointcloud" output="screen"/>
+</launch>

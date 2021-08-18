@@ -1,0 +1,9 @@
+On PC lab:
+
+
+cd ~/docker/pascal_docker
+sudo sh terminal.sh
+source /opt/ros/melodic/setup.bash (for websocket) or source devel/setup.bash
+
+
+ssh vr-pc@128.16.28.55 -p 32

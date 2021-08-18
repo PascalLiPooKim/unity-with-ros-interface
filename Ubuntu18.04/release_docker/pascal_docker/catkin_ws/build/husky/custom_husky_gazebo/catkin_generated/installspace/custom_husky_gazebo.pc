@@ -1,0 +1,8 @@
+prefix=/home/pascal/catkin_ws/install
+
+Name: custom_husky_gazebo
+Description: Description of custom_husky_gazebo
+Version: 0.4.5
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<launch>
+<include file="$(find custom_husky_gazebo)/launch/husky_gazebo_course_1_medium.launch" />
+
+<include file="$(find husky_gazebo)/launch/husky_teleop_v4.launch" />
+
+<!--<include file="$(find rtabmap_helper)/launch/mapdata_to_pointcloud.launch" />-->
+
+<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+<node pkg="commands_to_unity" name="keyboard_hits" 
+    type="keyboard_hits" output="screen"/>
+
+<node pkg="rosbag" type="record" name="husky_course_1_medium_3FAS"
+       args="record -o $(find custom_husky_gazebo)/bags/husky_course_1_medium_3FAS /ground_truth/state"/>
+
+<node pkg="commands_to_unity" name="get_model_state" 
+    type="get_model_state.py" output="screen"/>
+
+</launch>

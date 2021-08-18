@@ -1,0 +1,8 @@
+prefix=/home/pascal/catkin_ws/devel
+
+Name: pointcloud_tools
+Description: Description of pointcloud_tools
+Version: 0.0.0
+Cflags: -I/home/pascal/catkin_ws/src/pointcloud_tools/include
+Libs: -L${prefix}/lib -lpointcloud_tools
+Requires: laser_geometry roscpp rospy std_msgs
