@@ -9,10 +9,12 @@
 <include file="$(find commands_to_unity)/launch/course_2_easy_kbhit.launch" />
 
 <arg name="record_data" default="false"/>
+<arg name="test_case" default="V"/>
+<arg name="candidate_num" default="1"/>
 
 <group if="$(arg record_data)">
 <node pkg="rosbag" type="record" name="husky_course_2_easy_5FAS"
-       args="record -o $(find custom_husky_gazebo)/bags/husky_course_2_easy_5FAS /ground_truth/state" />
+       args="record -o $(find custom_husky_gazebo)/bags/husky_course_2_easy_5FAS_$(arg test_case)_$(arg candidate_num) /ground_truth/state" />
 </group>
 
 </launch>
