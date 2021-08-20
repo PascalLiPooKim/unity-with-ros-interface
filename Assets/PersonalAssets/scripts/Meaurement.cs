@@ -20,8 +20,8 @@ public class Meaurement : MonoBehaviour
 
     private string completionTimeText;
     private string numberOfKeyPressedText;
-    
 
+    public bool NASA_TLX = true;
 
     
     // Start is called before the first frame update
@@ -90,7 +90,17 @@ public class Meaurement : MonoBehaviour
 	{
         timerText.color = Color.green;
         keystrokesCounterText.color = Color.yellow;
-        SaveData(completionTimeText, numberOfKeyPressedText, "./CandidatesData.txt");
+        string path;
+        if (NASA_TLX)
+		{
+            path = "./CandidatesDataWorkload.txt";
+        }
+		else
+		{
+            path = "./CandidatesDataDegradedVision.txt";
+
+        }
+        SaveData(completionTimeText, numberOfKeyPressedText, path);
         targetReached = true;
     }
 
@@ -112,7 +122,7 @@ public class Meaurement : MonoBehaviour
 		{
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@filePath, true))
 			{
-                file.WriteLine(" ");
+                file.WriteLine("---------------------------------------------------------------------------------------------");
                 file.WriteLine(IDNumber.ToString() + ", " + age.ToString() + ", " + completionTime + ", " + numberOfKeystrokes);
 			}
 		}

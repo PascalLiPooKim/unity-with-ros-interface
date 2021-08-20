@@ -16,6 +16,7 @@ import seaborn as sns
 from scipy.stats import norm
 
 #%%
+sns.set()
 params = {
    'axes.labelsize': 25,
    'font.size': 25,
@@ -35,12 +36,14 @@ print(x)
 #n_bins = 10
 num = np.array([1, 2, 3, 4, 5])
 
-#path_3FAS = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\GoogleFormsData\3 Fixed Audio Sources Preliminary Test V2.csv"
-#path_5FAS = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\GoogleFormsData\5 Fixed Audio Sources Preliminary Test V2.csv"
-#path_3DAS = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\GoogleFormsData\3 Dynamic Audio Sources Preliminary Test V2.csv"
-#
-#
-#df_3FAS = pd.read_csv(path_3FAS, engine="python")
+path_3FAS = r"C:\Users\paswe\OneDrive\Desktop\3 Fixed Audio Sources Preliminary Test V2.csv"
+path_5FAS = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\GoogleFormsData\5 Fixed Audio Sources Preliminary Test V2.csv"
+path_3DAS = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\GoogleFormsData\3 Dynamic Audio Sources Preliminary Test V2.csv"
+
+
+#df_3FAS = pd.read_csv(path_3FAS)
+#print(type(df_3FAS["Total score"]))
+#print(float(df_3FAS["Total score"][1]))
 #df_5FAS = pd.read_csv(path_5FAS)
 #df_3DAS = pd.read_csv(path_3DAS)
 
@@ -172,7 +175,7 @@ plt.show()
 #    
 #for i in range(len(scores_5FAS)): 
 #    data_5FAS += [scores_5FAS[i]]*[count_5FAS[j] for j in count_5FAS][i] 
-#sns.set()
+sns.set()
 #plt.figure()
 #sns.barplot(scores_3FAS,[count_3FAS[i] for i in count_3FAS])
 #sns.barplot(scores_5FAS, [count_5FAS[i] for i in count_5FAS])
@@ -264,6 +267,57 @@ plt.plot(new_scores_3DAS, skew_norm_pdf(new_scores_5FAS, np.mean(total_score_5FA
 #new_scores_3FAS = np.linspace(min(np.array(scores_3FAS)-0.2), max(np.array(scores_3FAS)-0.2), num = 100, endpoint=True)
 #plt.plot(new_scores_3FAS, f(new_scores_3FAS), '--')
 #plt.plot(new_scores_3FAS, interpolate.splev(new_scores_3FAS, f))
+plt.show()
+
+#%%
+
+SAGAT_total_scores_VA = [11, 8, 9, 10]
+SAGAT_color_VA = []
+SAGAT_total_scores_V = [9, 6]
+candidate_num = np.linspace(1, 6, num=6, dtype=int)
+
+np.mean(SAGAT_total_scores_VA)
+
+#%%
+plt.figure()
+
+metrics =['Vision', 'Audio & Vision']
+#plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
+#plt.bar(candidate_num-0.2, x[:, 0], width=0.4, color='b', align='center')
+#plt.bar(candidate_num+0.2, x[:, 1], width=0.4, color='g', align='center')
+plt.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5)
+plt.bar(1, np.mean(SAGAT_total_scores_V), width=0.5)
+
+plt.xticks(np.arange(2), ['Vision & Audio ({} Candidates)'.format(4), 'Vision ({} Candidates)'.format(2)])
+plt.yticks(np.arange(12))
+
+plt.ylabel("Average Score")
+plt.xlabel("Feedback Enabled")
+plt.legend(metrics)
+plt.grid(axis='y')
+plt.title('Average score of SAGAT under 2 test cases')
+
+
+plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 5.5, "{}% Weekly".format(0.5), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 1.5, "{}% Once a year".format(0.5), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.show()
+
+#%%
+plt.figure()
+
+metrics =['Audio & Vision', 'Vision']
+plt.bar([1, 2, 4, 5], SAGAT_total_scores_VA, width=0.5, color='g')
+plt.bar([3, 6], SAGAT_total_scores_V, width=0.5, color='r')
+plt.ylabel("SAGAT Total Score")
+plt.xlabel("Candidate Number")
+plt.legend(metrics)
+plt.grid(axis='y')
+plt.yticks(np.arange(12))
+plt.title('Total Score of the 6 Participants')
 plt.show()
 
 #%%
