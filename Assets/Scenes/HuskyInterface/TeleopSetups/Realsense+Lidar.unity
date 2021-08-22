@@ -7135,7 +7135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1033364210
 Transform:
   m_ObjectHideFlags: 0
@@ -7399,7 +7399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1098077582
 Transform:
   m_ObjectHideFlags: 0
@@ -7538,7 +7538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1112266568
 Transform:
   m_ObjectHideFlags: 0
@@ -16087,9 +16087,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 300191615}
   keystrokesCounterText: {fileID: 1374623249}
-  IDNumber: 3
-  age: 99
-  NASA_TLX: 1
+  IDNumber: 1
+  age: 21
+  NASA_TLX: 0
 --- !u!114 &1671567164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17411,7 +17411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1984652840
 Transform:
   m_ObjectHideFlags: 0
@@ -17495,7 +17495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006517351
 Transform:
   m_ObjectHideFlags: 0
