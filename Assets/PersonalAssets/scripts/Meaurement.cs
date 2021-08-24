@@ -21,40 +21,38 @@ public class Meaurement : MonoBehaviour
     private string completionTimeText;
     private string numberOfKeyPressedText;
     
-
+    public bool NASA_TLX = true;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        //InitTimerAndCounter();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    targetReached = true;
-        //    SaveData(completionTimeText, numberOfKeyPressedText, "./CandidatesData.txt");
-        //}
-
+        
+        // Stop updating timer and keystrokes counter if goal has been reached
         if (targetReached)
 		{
             return;
 		}
 
         // https://www.youtube.com/watch?v=x-C95TuQtf0
+        // Start timer and keystrokes counter when "Enter" key is pressed
         if (Input.GetKeyDown(KeyCode.Return))
 		{
             InitTimerAndCounter();
         }
         
+
         UpdateTimerAndCounter();
         
     }
 
+    // Initialise timer and keystrokes counter
     private void InitTimerAndCounter()
 	{
         startTime = Time.time;
@@ -62,9 +60,10 @@ public class Meaurement : MonoBehaviour
     }
 
     // https://www.youtube.com/watch?v=x-C95TuQtf0
+    // Increment timer and keystrokes counter, turn them to text and display them in Ynity canvas
     private void UpdateTimerAndCounter()
 	{
-        //float duration = Time.time - startTime;
+        // Timer
         float duration = startTime >= 0 ? Time.time - startTime : 0;
 
         string minutes = ((int)duration / 60).ToString();
@@ -72,6 +71,7 @@ public class Meaurement : MonoBehaviour
 
         timerText.text = minutes + ':' + seconds;
 
+        // Keystrokes counter
         if (Input.GetKeyDown("w") || Input.GetKeyDown("a") || Input.GetKeyDown("s") || Input.GetKeyDown("d"))
         {
             keystrokesCount += 1;
@@ -84,58 +84,46 @@ public class Meaurement : MonoBehaviour
 
     }
 
-    
 
+    // Stop updating timer and keystrokes counter and save them in a .txt file depending on experiment
     public void Finish()
 	{
         timerText.color = Color.green;
         keystrokesCounterText.color = Color.yellow;
-        SaveData(completionTimeText, numberOfKeyPressedText, "./CandidatesData.txt");
+        string path;
+        if (NASA_TLX)
+		{
+            path = "./CandidatesDataWorkload.txt";
+        }
+		else
+		{
+            path = "./CandidatesDataDegradedVision.txt";
+
+        }
+        SaveData(completionTimeText, numberOfKeyPressedText, path);
         targetReached = true;
     }
 
-    //   private void SaveData()
-    //{
-    //       string filePath = getPath();
-    //       //string filePath = "ParticipantsData.csv";
-    //       StreamWriter dataWriter = new StreamWriter(filePath);
-    //       dataWriter.WriteLine("Completion Time, Number of KeyStrokes, Workload Rating");
-    //       dataWriter.WriteLine("Anime is life");
-    //       dataWriter.Flush();
-    //       dataWriter.Close();
-    //}
+
 
     // https://www.youtube.com/watch?v=vDpww7HsdnM
+    // Write data to .txt file
     private void SaveData(string completionTime, string numberOfKeystrokes, string filePath)
 	{
 		try
 		{
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@filePath, true))
 			{
-                file.WriteLine(" ");
+                file.WriteLine("-----------------------------------------------------------------------------------------------");
                 file.WriteLine(IDNumber.ToString() + ", " + age.ToString() + ", " + completionTime + ", " + numberOfKeystrokes);
 			}
 		}
         catch(Exception e)
 		{
             throw new ApplicationException("Lol", e);
-            //print("Fail");
+         
 		}
 	}
-
-
-//	private string getPath()
-//	{
-//#if UNITY_EDITOR
-//        return Application.dataPath  + "/ParticipantsData.csv";
-//#elif UNITY_ANDROID
-//        return Application.persistentDataPath+ "ParticipantsData.csv";
-//#elif UNITY_IPHONE
-//        return Application.persistentDataPath+ "/" + "ParticipantsData.csv";
-//#else
-//        return Application.dataPath + "/ParticipantsData.csv";
-//#endif
-//	}
 
 
 }

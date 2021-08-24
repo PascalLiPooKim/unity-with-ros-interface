@@ -745,6 +745,7 @@ MonoBehaviour:
   keystrokesCounterText: {fileID: 1374623249}
   IDNumber: 3
   age: 99
+  NASA_TLX: 1
 --- !u!1 &195861721
 GameObject:
   m_ObjectHideFlags: 0
@@ -6003,6 +6004,7 @@ MonoBehaviour:
   keystrokesCounterText: {fileID: 1374623249}
   IDNumber: 3
   age: 99
+  NASA_TLX: 1
 --- !u!114 &929388687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16151,8 +16153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 300191615}
   keystrokesCounterText: {fileID: 1374623249}
-  IDNumber: 3
-  age: 99
+  IDNumber: 66
+  age: 66
+  NASA_TLX: 1
 --- !u!114 &1671567164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17428,7 +17431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sourceData: {fileID: 0}
   _pointTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _pointSize: 0.07
+  _pointSize: 0.06
   testShader: {fileID: 0}
   _pointShader: {fileID: 4800000, guid: 1baec256dca7c1642b87d05510e75a3f, type: 3}
   _diskShader: {fileID: 4800000, guid: 7ebf1f15e5b03014d92704caa6c97e2e, type: 3}

@@ -16,7 +16,7 @@ namespace RosSharp.RosBridgeClient
         // Start is called before the first frame update
         protected override void Start()
         {
-            //Initialising ROS node
+            // Initialising ROS node
             base.Start();
             cube.SetActive(false);
 
@@ -30,7 +30,7 @@ namespace RosSharp.RosBridgeClient
                 SpawnCube();
         }
 
-
+        // Callback to receive message from specified topic
         protected override void ReceiveMessage(MessageTypes.Std.Bool pause)
         {
             print("lol");
@@ -39,6 +39,7 @@ namespace RosSharp.RosBridgeClient
             isMessageReceived = true;
         }
 
+        // Spawn and remove cube in front of camera depending on bool message from ROS
         private void SpawnCube()
 		{
             

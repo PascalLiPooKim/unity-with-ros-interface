@@ -42,7 +42,7 @@ namespace RosSharp.RosBridgeClient
 
         protected override void Start()
         {
-            //Initialising ROS node and saving the particle system
+            // Initialising ROS node and saving the particle system
             base.Start();
             pointCloudRenderer = GetComponent<Pcx.PointCloudRenderer>();
             pointCloudData = ScriptableObject.CreateInstance<Pcx.PointCloudData>();
@@ -50,20 +50,22 @@ namespace RosSharp.RosBridgeClient
 
         void Update()
         {
-            //Processing a new mesage when recieved
+            // Processing a new mesage when recieved
             if (isMessageReceived)
                 ProcessMessage();
-            //Debug.Log(1.0f / Time.deltaTime);
+            
         }
 
+        // Callback to receive message from specified topic
         protected override void ReceiveMessage(MessageTypes.Sensor.PointCloud2 recPointCloud)
         {
-            //Obtaining pointcloud data from message and number of points, setting bool to true
+            // Obtaining pointcloud data from message and number of points, setting bool to true
             pointCloud = new PointCloud(recPointCloud);
             pcName = recPointCloud.header.frame_id;
             isMessageReceived = true;
         }
 
+        // Verify if values from message are valid
         private bool checkVector3Valid(Vector3 vec)
         {
             if (checkFloatValid(vec.x) && checkFloatValid(vec.y) && checkFloatValid(vec.z))
@@ -84,13 +86,13 @@ namespace RosSharp.RosBridgeClient
 
         private void ProcessMessage()
         {
-            //Getting num of points for particle emmitter and creating particles of that size
+            // Getting num of points for particle emmitter and creating particles of that size
             int pointCloudSize = (int)pointCloud.Points.Length / factor;
             positions = new List<Vector3>(pointCloudSize);
             colors = new List<Color32>(pointCloudSize);
 
-            //Debug.Log("Number of points: " + pointCloudSize);
-            //Looping through every point in the pointcloud to generate equivalent particle
+           
+            // Looping through every point in the pointcloud to generate equivalent particle
             if (pointCloudSize > 0)
 			{
                 for (int i = 0; i < pointCloudSize; i++)
@@ -116,7 +118,7 @@ namespace RosSharp.RosBridgeClient
                     }
                 }
 
-                //Setting data in PointCloudData
+                // Setting data in PointCloudData
                 pointCloudData = ScriptableObject.CreateInstance<Pcx.PointCloudData>();
                 pointCloudData.Initialize(positions, colors);
                 pointCloudRenderer.sourceData = pointCloudData;
