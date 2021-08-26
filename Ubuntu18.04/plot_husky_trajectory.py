@@ -11,7 +11,7 @@ from os import listdir
 
 
 
-# plt.style.use("ggplot")
+plt.style.use("ggplot")
 params = {
    'axes.labelsize': 25,
    'font.size': 25,
@@ -32,7 +32,7 @@ def plot_traj_course_2_V():
     
     dir_path = "/home/vr-pc/Desktop/courses_2_3_traj_bags/course_2/vision/"
 
-    plt.figure()
+    plt.figure("Course 2 V")
     for i, file in enumerate(os.listdir(dir_path)):
         
         bag_path = dir_path + file
@@ -50,12 +50,13 @@ def plot_traj_course_2_V():
 
         # Plot the graph
         
-        plt.plot(x, y, '--', label="Husky Trajectory for Candidate {}".format(i + 1))
+        plt.plot(x, y, '--', label="Husky Trajectory for Candidate {}".format(i + 1), linewidth=7)
     plt.legend()
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Trajectory of Husky using Vision only of Degraded Vision Experiment")
+    # plt.title("Trajectory of Husky using Vision only of Degraded Vision Experiment")
     plt.grid()
+    plt.axis('off')
     plt.show()
 
 
@@ -64,7 +65,7 @@ def plot_traj_course_2_VA():
     
     dir_path = "/home/vr-pc/Desktop/courses_2_3_traj_bags/course_2/vision_audio/"
 
-    plt.figure()
+    plt.figure("Course 2 VA")
     for i, file in enumerate(os.listdir(dir_path)):
         
         bag_path = dir_path + file
@@ -82,11 +83,12 @@ def plot_traj_course_2_VA():
 
         # Plot the graph
         
-        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i))
+        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i), linewidth=7)
     plt.legend()
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Trajectory of Husky using Vision & Audio for Degraded Vision Experiment")
+    # plt.title("Trajectory of Husky using Vision & Audio for Degraded Vision Experiment")
+    plt.axis('off')
     plt.grid()
     plt.show()
 
@@ -95,7 +97,7 @@ def plot_traj_course_3_V():
     
     dir_path = "/home/vr-pc/Desktop/courses_2_3_traj_bags/course_3/vision/"
 
-    plt.figure()
+    plt.figure("Course 3 V")
     for i, file in enumerate(os.listdir(dir_path)):
         
         bag_path = dir_path + file
@@ -114,11 +116,12 @@ def plot_traj_course_3_V():
 
         # Plot the graph
         
-        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i))
+        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i), linewidth=7)
     plt.legend()
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Trajectory of Husky using Vision only in Workload Experiment")
+    # plt.title("Trajectory of Husky using Vision only in Workload Experiment")
+    plt.axis('off')
     plt.grid()
     plt.show()
 
@@ -127,7 +130,7 @@ def plot_traj_course_3_VA():
     
     dir_path = "/home/vr-pc/Desktop/courses_2_3_traj_bags/course_3/vision_audio/"
 
-    plt.figure()
+    plt.figure("Course 3 VA")
     for i, file in enumerate(os.listdir(dir_path)):
        
         bag_path = dir_path + file
@@ -146,12 +149,13 @@ def plot_traj_course_3_VA():
 
         # Plot the graph
         
-        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i))
+        plt.plot(x, y, '--', label="Husky Trajectory of Candidate {}".format(i), linewidth=7)
     plt.legend()
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Trajectory of Husky using Vision & Audio in Workload Experiment")
+    # plt.title("Trajectory of Husky using Vision & Audio in Workload Experiment")
     plt.grid()
+    plt.axis('off')
     plt.show()
 
 if __name__ == '__main__':
