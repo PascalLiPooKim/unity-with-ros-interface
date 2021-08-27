@@ -12,11 +12,12 @@ import pandas as pd
 from collections import Counter
 import scipy.stats as stats
 from scipy.optimize import curve_fit
-import seaborn as sns
+#import seaborn as sns
 from scipy.stats import norm
 
 #%%
-sns.set()
+#sns.set()
+plt.style.use("seaborn")
 params = {
    'axes.labelsize': 25,
    'font.size': 25,
@@ -26,13 +27,19 @@ params = {
    'xtick.labelsize': 25,
    'ytick.labelsize': 25, 
    'figure.figsize': [25, 15],
-   'axes.titlesize': 30
+   'axes.titlesize': 30,
    } 
+
+plt.rcParams.update({"lines.markeredgewidth" : 3,
+                     "errorbar.capsize" : 10})
 plt.rcParams.update(params)
 
 #%%
+"""
+PRELIMINARY EXPERIMENT DATA
+"""
 x = np.random.randint(10, 30, size=(5, 3))
-print(x)
+#print(x)
 #n_bins = 10
 num = np.array([1, 2, 3, 4, 5])
 
@@ -53,27 +60,68 @@ total_score_3DAS = [14, 13, 9, 8, 14, 13, 15, 14]
 
 candidates_num = np.linspace(1, 8, num=8, dtype=int)
 
+
+prelim_df = pd.DataFrame({'total_score_3FAS':[14, 15, 8, 13, 13, 12, 15, 13], 
+                          'total_score_5FAS' :[14, 15, 12, 13, 13, 14, 15, 13], 
+                          'total_score_3DAS':[14, 13, 9, 8, 14, 13, 15, 14]})
+
+
+print(stats.ttest_ind(total_score_3FAS, total_score_5FAS), 
+      stats.ttest_ind(total_score_3FAS, total_score_3DAS), 
+      stats.ttest_ind(total_score_3DAS, total_score_5FAS))
+
 #%%
+"""
+PRELIMINARY EXPERIMENT AVERAGE AND STANDARD DEVIATION PLOT
+"""
+
+plt.bar(0, np.mean(total_score_3FAS), yerr = np.std(total_score_3FAS), align='center', alpha=0.5, ecolor = 'red')
+plt.bar(1, np.mean(total_score_5FAS), yerr = np.std(total_score_5FAS), align='center', alpha=0.5, ecolor = 'red')
+plt.bar(2, np.mean(total_score_3DAS), yerr = np.std(total_score_3DAS), align='center', alpha=0.5, ecolor = 'red')
+plt.xticks(np.arange(3), ['3 Fixed Audio Sources', '5 Fixed Audio Sources', '3 Dynamic Audio Sources'])
+plt.ylabel("Average score")
+plt.title("Average Point of each System in the Preliminary Experiment")
+
+plt.text(0, np.mean(total_score_3FAS)/2, "Mean: {} \n\n Std: {:.2f}".format(np.mean(total_score_3FAS), 
+                    np.std(total_score_3FAS)), fontsize=20, horizontalalignment='center', verticalalignment='center', color = 'white')
+
+plt.text(1, np.mean(total_score_5FAS)/2, "Mean: {} \n\n Std: {:.2f}".format(np.mean(total_score_5FAS), 
+                    np.std(total_score_5FAS)), fontsize=20, horizontalalignment='center', verticalalignment='center', color = 'white')
+
+plt.text(2, np.mean(total_score_3DAS)/2, "Mean: {} \n\n Std: {:.2f}".format(np.mean(total_score_3DAS), 
+                    np.std(total_score_3DAS)), fontsize=20, horizontalalignment='center', verticalalignment='center', color = 'white')
+
+
+
+#%%
+"""
+PRELIMINARY EXPERIMENT TOTAL SCORE VS CANDIDATE NUMBER PLOT
+"""
 
 plt.figure()
 #colors = ['red', 'tan', 'lime']
 metrics =['3 Fixed Audio Sources', '5 Fixed Audio Sources', '3 Dynamic Audio Sources']
 #plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
-plt.bar(candidates_num-0.2, total_score_3FAS, width=0.2, color='b', align='center')
-plt.bar(candidates_num, total_score_5FAS, width=0.2, color='g', align='center')
-plt.bar(candidates_num+0.2, total_score_3DAS, width=0.2, color='r', align='center')
+plt.bar(candidates_num-0.2, total_score_3FAS, width=0.2, color='b', align='center' , alpha=0.8)
+plt.bar(candidates_num, total_score_5FAS, width=0.2, color='g', align='center', alpha=0.8)
+plt.bar(candidates_num+0.2, total_score_3DAS, width=0.2, color='r', align='center', alpha=0.8)
 plt.legend(prop={'size': 10})
 plt.ylabel("Total score")
 plt.xlabel("Candidate Number")
-plt.legend(metrics)
-plt.grid(axis='y')
-plt.title('Total score for the 8 candidates in the preliminary test for 3 different auditory systems')
+plt.legend(metrics, loc='best')
+#plt.grid(axis='y')
+plt.title('Total Score for the 8 Candidates in the Preliminary Test for \n3 Different Auditory Systems')
 
 
 #!plt.text(2, 6, r'an equation: $E=mc^2$', fontsize=15)
-plt.show()
+#plt.show()
 
 #%%
+"""
+PRELIMINARY EXPERIMENT NUMBER OF RESPONDENTS VS SCORE PLOT
+"""
+
+
 count_3FAS = Counter(total_score_3FAS)
 #print(count_3FAS)
 count_5FAS = Counter(total_score_5FAS)
@@ -123,8 +171,8 @@ plt.legend(prop={'size': 10})
 plt.ylabel("Number of respondents")
 plt.xlabel("Score")
 plt.legend(metrics)
-plt.grid(axis='y')
-plt.title('Number of candidates having acheieved a certain score for each auditory system')
+#plt.grid(axis='y')
+plt.title('Number of Candidates having acheieved a certain Score for each Auditory System')
 
 
 
@@ -147,7 +195,8 @@ plt.plot(new_scores_5FAS, func(new_scores_5FAS, 1, np.mean(total_score_5FAS), np
 #plt.plot(np.array(scores_3DAS)+0.2, [int(count_3DAS[i]) for i in count_3DAS], 'kx')
 new_scores_3DAS = np.linspace(min(np.array(scores_3DAS)+0.2)-1, max(np.array(scores_3DAS)+0.2)+1, num = 100, endpoint=True)
 #plt.plot(new_scores_3FAS, f(new_scores_3FAS), '--')
-plt.plot(new_scores_3DAS, func(new_scores_3DAS, 1, np.mean(total_score_3DAS), np.std(total_score_3DAS))*len(total_score_3DAS)*1, 'r')
+plt.plot(new_scores_3DAS, func(new_scores_3DAS, 1, np.mean(total_score_3DAS), 
+                               np.std(total_score_3DAS))*len(total_score_3DAS)*1, 'r')
 
 #plt.plot(np.array(scores_5FAS), [int(count_5FAS[i]) for i in count_5FAS], 'kx')
 ##new_scores_5FAS = np.linspace(min(np.array(scores_5FAS)), max(np.array(scores_5FAS)), num = 100, endpoint=True)
@@ -175,7 +224,7 @@ plt.show()
 #    
 #for i in range(len(scores_5FAS)): 
 #    data_5FAS += [scores_5FAS[i]]*[count_5FAS[j] for j in count_5FAS][i] 
-sns.set()
+#sns.set()
 #plt.figure()
 #sns.barplot(scores_3FAS,[count_3FAS[i] for i in count_3FAS])
 #sns.barplot(scores_5FAS, [count_5FAS[i] for i in count_5FAS])
@@ -189,6 +238,10 @@ sns.set()
 #plt.hist(np.array(total_score_3DAS), alpha = 0.5)
 #plt.show()
 #%%
+"""
+DO NOT RUN THIS CELL
+"""
+
 
 def skew_norm_pdf(x,e=0,w=1,a=0):
     # adapated from:
@@ -270,31 +323,40 @@ plt.plot(new_scores_3DAS, skew_norm_pdf(new_scores_5FAS, np.mean(total_score_5FA
 plt.show()
 
 #%%
+"""
+SAGAT EXPERIMENT DATA
+"""
 
 SAGAT_total_scores_VA = [11, 8, 9, 10]
 SAGAT_color_VA = []
-SAGAT_total_scores_V = [9, 5]
+SAGAT_total_scores_V = [9, 5, 4 , 8]
 candidate_num = np.linspace(1, 6, num=6, dtype=int)
 
 np.mean(SAGAT_total_scores_VA), np.mean(SAGAT_total_scores_V)
 
+import scipy as sp
+print(sp.stats.ttest_ind(SAGAT_total_scores_VA, SAGAT_total_scores_V))
+
 #%%
+"""
+SAGAT EXPERIMENT MEAN AND STD PLOT
+"""
 plt.figure()
 
 metrics =['Vision', 'Audio & Vision']
 #plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
 #plt.bar(candidate_num-0.2, x[:, 0], width=0.4, color='b', align='center')
 #plt.bar(candidate_num+0.2, x[:, 1], width=0.4, color='g', align='center')
-plt.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5)
-plt.bar(1, np.mean(SAGAT_total_scores_V), width=0.5)
+plt.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5, yerr = np.std(SAGAT_total_scores_VA), align='center', alpha=0.5, ecolor = 'red')
+plt.bar(1, np.mean(SAGAT_total_scores_V), width=0.5, yerr = np.std(SAGAT_total_scores_V), align='center', alpha=0.5, ecolor = 'red')
 
-plt.xticks(np.arange(2), ['Vision & Audio ({} Candidates)'.format(4), 'Vision ({} Candidates)'.format(2)])
+plt.xticks(np.arange(2), ['Vision & Audio ({} Candidates)'.format(len(SAGAT_total_scores_VA)), 'Vision ({} Candidates)'.format(len(SAGAT_total_scores_V))])
 plt.yticks(np.arange(12))
 
 plt.ylabel("Average Score")
 plt.xlabel("Feedback Enabled")
 #plt.legend(metrics)
-plt.grid(axis='y')
+#plt.grid(axis='y')
 plt.title('Average score of SAGAT under 2 test cases')
 
 
@@ -302,31 +364,40 @@ plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='cente
 plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
 plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
 plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 5.5, "{}% Weekly".format(0.5), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 1.5, "{}% Once a year".format(0.5), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 2, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.text(1, 4, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
 
 plt.show()
 
 #%%
+"""
+SAGAT EXPERIMENT SCORE VS CANDIDATE NUMBER PLOT
+"""
 ax = plt.figure()
 
 metrics =['Audio & Vision', 'Vision']
-plt.bar([1, 2, 4, 5], SAGAT_total_scores_VA, width=0.5, color='g')
-plt.bar([3, 6], SAGAT_total_scores_V, width=0.5, color='r')
+plt.bar([1, 2, 4, 5], SAGAT_total_scores_VA, width=0.5, color='g', align='center', alpha=0.5)
+plt.bar([3, 6, 7, 8], SAGAT_total_scores_V, width=0.5, color='r' , align='center', alpha=0.5)
 plt.ylabel("SAGAT Total Score")
 plt.xlabel("Candidate Number")
 plt.legend(metrics)
 #[extra, bar_0_10, bar_10_100], ("My explanatory text", "0-10", "10-100")
-plt.grid(axis='y')
+#plt.grid(axis='y')
 plt.yticks(np.arange(12))
-plt.title('Total Score of the 6 Participants')
+plt.title('Total Score of the {} Participants'.format(len(SAGAT_total_scores_V) + len(SAGAT_total_scores_VA)))
 
 plt.text(5, 5, r"$\varnothing$", fontsize=40, horizontalalignment='center', verticalalignment='center')
+plt.text(7, 2, r"$\varnothing$", fontsize=40, horizontalalignment='center', verticalalignment='center')
 #plt.legend([r"$\varnothing$"], ("Robotics & Teleoperation Expertise"))
 #plt.text()
 plt.show()
 
 #%%
+"""
+DO NOT RUN THIS CELL
+"""
 
 plt.figure()
 #colors = ['red', 'tan', 'lime']
@@ -343,6 +414,188 @@ plt.grid(axis='y')
 plt.title('Navigation Completion Time Histogram')
 
 plt.show()
+
+#%%
+#mental_dem_VA = [1, 4, 4]
+#physical_dem_VA = [1, 2, 3]
+"""
+COURSE 3 NASA TLX DATA + PLOT
+"""
+
+
+
+NASATLX_path = r"C:\Users\paswe\OneDrive\Desktop\NASA TLX Course 3.csv"
+df = pd.read_csv(NASATLX_path, engine='python')
+#print(df.dtypes)
+print(df["Mental Demand: How mentally demanding was the task?.1"])
+NASA_TLX_VA = df[["Mental Demand: How mentally demanding was the task?", 
+                  "Physical Demand: How physically demanding was the task?", 
+                  "Temporal Demand: How hurried or rushed was the pace of the task?", 
+                  "Performance: How successful were you in accomplishing what you were asked to do?", 
+                  "Effort: How hard did you have to work to accomplish your level of performance?",
+                  "Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?"]]
+
+print(NASA_TLX_VA.values)
+
+NASA_TLX_V = df[["Mental Demand: How mentally demanding was the task?.1", 
+                  "Physical Demand: How physically demanding was the task?.1", 
+                  "Temporal Demand: How hurried or rushed was the pace of the task?.1", 
+                  "Performance: How successful were you in accomplishing what you were asked to do?.1", 
+                  "Effort: How hard did you have to work to accomplish your level of performance?.1",
+                  "Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?.1"]]
+
+print(NASA_TLX_V.values)
+
+#fig, ax = plt.subplots()
+yerr=np.array([[np.std(NASA_TLX_VA.values[:, i]), np.std(NASA_TLX_V.values[:, i])] for i in range(6)])
+print(yerr)
+#yerr = 
+new_df = pd.DataFrame({"Mean of Vision & Audio": NASA_TLX_VA.values.mean(axis=0), "Mean of Vision": NASA_TLX_V.values.mean(axis=0), "Errors_VA":yerr[:, 0], "Errors_V":yerr[:, 1]})
+new_df_plot = new_df[["Mean of Vision & Audio", "Mean of Vision"]].plot(kind="bar", rot=0, yerr = [yerr[:, 0], yerr[:, 1]], alpha = 0.5, capsize = 10, ecolor = "red")
+new_df_plot.set_xticklabels(["Mental\nDemand", "Physical\nDemand", "Temporal\nDemand", "Performance\nLevel", "Effort\nLevel", "Frustration\nLevel"])
+new_df_plot.set_yerr = new_df.Errors_VA.to_frame("Mean of Vision & Audio")
+new_df_plot.set_ylabel("Avegare Point")
+new_df_plot.set_title("NASA Task Load Index")
+#ax.set_xticklabels(["Mental_demand"])
+#print(sp.stats.ttest_ind(NASA_TLX_VA, NASA_TLX_V))
+
+#plt.figure()
+#plt.bar(new_df["Mean of Vision & Audio"])
+
+#%%
+"""
+COURSE 2 NASA TLX DATA + PLOT
+"""
+
+NASATLX_path = r"C:\Users\paswe\OneDrive\Desktop\NASA TLX Course 2.csv"
+df = pd.read_csv(NASATLX_path, engine='python')
+#print(df.dtypes)
+print(df["Mental Demand: How mentally demanding was the task?.1"])
+NASA_TLX_VA = df[["Mental Demand: How mentally demanding was the task?", 
+                  "Physical Demand: How physically demanding was the task?", 
+                  "Temporal Demand: How hurried or rushed was the pace of the task?", 
+                  "Performance: How successful were you in accomplishing what you were asked to do?", 
+                  "Effort: How hard did you have to work to accomplish your level of performance?",
+                  "Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?"]]
+
+print(NASA_TLX_VA.values)
+
+NASA_TLX_V = df[["Mental Demand: How mentally demanding was the task?.1", 
+                  "Physical Demand: How physically demanding was the task?.1", 
+                  "Temporal Demand: How hurried or rushed was the pace of the task?.1", 
+                  "Performance: How successful were you in accomplishing what you were asked to do?.1", 
+                  "Effort: How hard did you have to work to accomplish your level of performance?.1",
+                  "Frustration: How insecure, discouraged, irritated, stressed, and annoyed were you?.1"]]
+
+print(NASA_TLX_V.values)
+
+#fig, ax = plt.subplots()
+yerr=np.array([[np.std(NASA_TLX_VA.values[:, i]), np.std(NASA_TLX_V.values[:, i])] for i in range(6)])
+print(yerr)
+#yerr = 
+new_df = pd.DataFrame({"Mean of Vision & Audio": NASA_TLX_VA.values.mean(axis=0), "Mean of Vision": NASA_TLX_V.values.mean(axis=0), "Errors_VA":yerr[:, 0], "Errors_V":yerr[:, 1]})
+new_df_plot = new_df[["Mean of Vision & Audio", "Mean of Vision"]].plot(kind="bar", rot=0, yerr = [yerr[:, 0], yerr[:, 1]], alpha = 0.5, capsize = 10, ecolor = "red")
+new_df_plot.set_xticklabels(["Mental\nDemand", "Physical\nDemand", "Temporal\nDemand", "Performance\nLevel", "Effort\nLevel", "Frustration\nLevel"])
+new_df_plot.set_yerr = new_df.Errors_VA.to_frame("Mean of Vision & Audio")
+new_df_plot.set_ylabel("Avegare Point")
+new_df_plot.set_title("NASA Task Load Index")
+
+
+
+
+#%%
+"""
+COURSE 3 DATA FROM UNITY
+"""
+
+workload_CT_VA = [253, 264, 222]
+workload_CT_V = [237, 243, 243]
+
+workload_KH_VA = [132, 110, 78]
+workload_KH_V = [129, 103, 124]
+
+workload_C_VA = [0, 1, 2]
+workload_C_V = [0, 1, 2]
+
+print(stats.ttest_ind(workload_CT_VA, workload_CT_V), 
+      stats.ttest_ind(workload_KH_VA, workload_KH_V), 
+      stats.ttest_ind(workload_C_VA, workload_C_V))
+
+#%%
+
+plt.subplot(1, 3, 1)
+plt.bar(0 , np.mean(workload_CT_VA), align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_CT_VA), yerr =np.std(workload_CT_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_CT_V), align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_CT_V), yerr =np.std(workload_CT_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of Completion Time')
+
+plt.subplot(1, 3, 2)
+plt.bar(0 , np.mean(workload_KH_VA), align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_KH_VA), yerr =np.std(workload_KH_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_KH_V), align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_KH_V), yerr =np.std(workload_KH_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of # Keystrokes')
+
+plt.subplot(1, 3, 3)
+plt.bar(0 , np.mean(workload_C_VA),  align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_C_VA), yerr =np.std(workload_C_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_C_V),  align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_C_V), yerr =np.std(workload_C_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of # Collisions')
+plt.show()
+
+
+#%%
+
+"""
+COURSE 2 DATA FROM UNITY
+"""
+
+workload_CT_VA = [179, 125, 101]
+workload_CT_V = [106, 104, 121]
+
+workload_KH_VA = [85, 78, 35]
+workload_KH_V = [61, 50, 67]
+
+workload_C_VA = [2, 1, 2]
+workload_C_V = [1, 1, 4]
+
+print(stats.ttest_ind(workload_CT_VA, workload_CT_V), 
+      stats.ttest_ind(workload_KH_VA, workload_KH_V), 
+      stats.ttest_ind(workload_C_VA, workload_C_V))
+
+
+#%%
+
+plt.subplot(1, 3, 1)
+plt.bar(0 , np.mean(workload_CT_VA), align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_CT_VA), yerr =np.std(workload_CT_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_CT_V), align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_CT_V), yerr =np.std(workload_CT_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of Completion Time')
+
+plt.subplot(1, 3, 2)
+plt.bar(0 , np.mean(workload_KH_VA), align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_KH_VA), yerr =np.std(workload_KH_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_KH_V), align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_KH_V), yerr =np.std(workload_KH_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of # Keystrokes')
+
+plt.subplot(1, 3, 3)
+plt.bar(0 , np.mean(workload_C_VA),  align='center', alpha=0.5)
+plt.errorbar(0 , np.mean(workload_C_VA), yerr =np.std(workload_C_VA), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.bar(1 , np.mean(workload_C_V),  align='center', alpha=0.5)
+plt.errorbar(1 , np.mean(workload_C_V), yerr =np.std(workload_C_V), capsize = 8, elinewidth = 3, markeredgewidth=3, ecolor='red')
+plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
+plt.title(r'$\mu$ of # Collisions')
+plt.show()
+
 
 
 #%%
