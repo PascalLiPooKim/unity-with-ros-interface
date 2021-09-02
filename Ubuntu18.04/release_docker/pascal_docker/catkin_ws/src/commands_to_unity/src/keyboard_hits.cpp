@@ -1,6 +1,7 @@
 /**
  * Script to stop timer and keystroke counter in Unity. Furthermore, script is used to degrade
  * visual information when corresponding key is pressed.
+ * Codes based on test_ce3.cpp of CW3 of COMP0129(20/21)
  */
 
 
