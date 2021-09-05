@@ -341,7 +341,8 @@ print(sp.stats.ttest_ind(SAGAT_total_scores_VA, SAGAT_total_scores_V))
 """
 SAGAT EXPERIMENT MEAN AND STD PLOT
 """
-plt.figure()
+#plt.figure()
+plt.subplot(1, 2, 1)
 
 metrics =['Vision', 'Audio & Vision']
 #plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
@@ -350,25 +351,114 @@ metrics =['Vision', 'Audio & Vision']
 plt.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5, yerr = np.std(SAGAT_total_scores_VA), align='center', alpha=0.5, ecolor = 'red')
 plt.bar(1, np.mean(SAGAT_total_scores_V), width=0.5, yerr = np.std(SAGAT_total_scores_V), align='center', alpha=0.5, ecolor = 'red')
 
-plt.xticks(np.arange(2), ['Vision & Audio ({} Candidates)'.format(len(SAGAT_total_scores_VA)), 'Vision ({} Candidates)'.format(len(SAGAT_total_scores_V))])
+plt.xticks(np.arange(2), ['Vision & Audio \n({} Candidates)'.format(len(SAGAT_total_scores_VA)), 'Vision \n({} Candidates)'.format(len(SAGAT_total_scores_V))])
 plt.yticks(np.arange(12))
 
 plt.ylabel("Average Score")
-plt.xlabel("Feedback Enabled")
+#plt.xlabel("Feedback Enabled")
+#plt.legend(metrics)
+#plt.grid(axis='y')
+plt.title('Average score of SAGAT \nunder 2 test cases')
+
+
+#plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 2, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 4, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.subplot(1, 2, 2)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year', 'Never']
+plt.pie([1, 1, 1, 1, 0], labels =labels)
+plt.title("Percentages of candidates with a certain \ngaming experience")
+
+plt.show()
+
+#%%
+
+plt.rcParams.update({'axes.titlesize': 25})
+ax1 = plt.subplot2grid((2, 2), (0, 0) , rowspan=2)
+
+metrics =['Vision', 'Audio & Vision']
+#plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
+#plt.bar(candidate_num-0.2, x[:, 0], width=0.4, color='b', align='center')
+#plt.bar(candidate_num+0.2, x[:, 1], width=0.4, color='g', align='center')
+ax1.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5, yerr = np.std(SAGAT_total_scores_VA), align='center', alpha=0.5, ecolor = 'red')
+ax1.bar(1, np.mean(SAGAT_total_scores_V), width=0.5, yerr = np.std(SAGAT_total_scores_V), align='center', alpha=0.5, ecolor = 'red')
+
+plt.xticks(np.arange(2), ['Vision & Audio \n({} Candidates)'.format(len(SAGAT_total_scores_VA)), 'Vision \n({} Candidates)'.format(len(SAGAT_total_scores_V))])
+plt.yticks(np.arange(12))
+
+plt.ylabel("Average Score")
+#plt.xlabel("Feedback Enabled")
 #plt.legend(metrics)
 #plt.grid(axis='y')
 plt.title('Average score of SAGAT under 2 test cases')
 
+plt.rcParams.update({'axes.titlesize': 20})
 
-plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 2, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
-plt.text(1, 4, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 2, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 4, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+ax2 = plt.subplot2grid((2, 2), (0, 1) , colspan=1)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year', 'Never']
+ax2.pie([1, 1, 1, 1, 0], labels =labels)
+plt.title("Percentages of candidates with a certain \ngaming experience (Vision & Audio)", color='b', alpha = 0.5)
 
+ax3 = plt.subplot2grid((2, 2), (1, 1) , colspan=1)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year', 'Never']
+ax3.pie([1, 1, 1, 1, 0], labels =labels)
+plt.title("Percentages of candidates with a certain \ngaming experience (Vision only)", color='g', alpha = 0.5)
+
+plt.show()
+
+#%%
+plt.rcParams.update({'axes.titlesize': 30})
+ax1 = plt.subplot2grid((2, 2), (0, 0) , rowspan=2)
+metrics =['Vision', 'Audio & Vision']
+#plt.hist(x, n_bins, density=True, histtype='bar', color=colors, label=metrics)
+#plt.bar(candidate_num-0.2, x[:, 0], width=0.4, color='b', align='center')
+#plt.bar(candidate_num+0.2, x[:, 1], width=0.4, color='g', align='center')
+ax1.bar(0, np.mean(SAGAT_total_scores_VA), width=0.5, yerr = np.std(SAGAT_total_scores_VA), align='center', alpha=0.5, ecolor = 'red')
+ax1.bar(1, np.mean(SAGAT_total_scores_V), width=0.5, yerr = np.std(SAGAT_total_scores_V), align='center', alpha=0.5, ecolor = 'red')
+plt.xticks(np.arange(2), ['Vision & Audio \n({} Candidates)'.format(len(SAGAT_total_scores_VA)), 'Vision \n({} Candidates)'.format(len(SAGAT_total_scores_V))])
+plt.yticks(np.arange(12))
+plt.ylabel("Average Score")
+#plt.xlabel("Feedback Enabled")
+#plt.legend(metrics)
+#plt.grid(axis='y')
+plt.title('Average score of SAGAT \n under 2 test cases')
+# plt.rcParams.update({'axes.titlesize': 20})
+#plt.text(0, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 5, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(0, 7, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 1, "{}% Daily".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 2, "{}% Monthly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 3, "{}% Weekly".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+#plt.text(1, 4, "{}% Once a year".format(0.25), fontsize=20, horizontalalignment='center', verticalalignment='center')
+plt.rcParams.update({'axes.titlesize': 27.5})
+ax2 = plt.subplot2grid((2, 2), (0, 1) , colspan=1)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year', 'Never']
+_, _, autotxts = ax2.pie([1, 1, 1, 1, 0], labels =labels, autopct='%1.1f%%', shadow = True)
+for autotxt in autotxts:
+    autotxt.set_color('white')
+    autotxt.set_fontsize(20)
+plt.title("Percentages of candidates with a certain \ngaming experience (Vision & Audio)", color='b', alpha = 0.5)
+ax3 = plt.subplot2grid((2, 2), (1, 1) , colspan=1)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year', 'Never']
+_, _, autotxts = ax3.pie([1, 1, 1, 1, 0], labels =labels, autopct='%1.1f%%', shadow = True)
+for autotxt in autotxts:
+    autotxt.set_color('white')
+    autotxt.set_fontsize(20)
+plt.title("Percentages of candidates with a certain \ngaming experience (Vision only)", color='g', alpha = 0.5)
 plt.show()
 
 #%%
@@ -500,6 +590,25 @@ new_df_plot.set_yerr = new_df.Errors_VA.to_frame("Mean of Vision & Audio")
 new_df_plot.set_ylabel("Avegare Point")
 new_df_plot.set_title("NASA Task Load Index")
 
+#%%
+#import matplotlib as mpl
+#mpl.rcParams['font.size'] = 15
+plt.subplot(1, 2, 1)
+labels = ['Daily', 'Weekly', 'Monthly', 'Once a year \n        + \n    Never']
+_, _, autotxts = plt.pie([2, 2, 1, 0], labels =labels, autopct='%1.1f%%', shadow = True)
+for autotxt in autotxts:
+    autotxt.set_color('white')
+    autotxt.set_fontsize(25)
+plt.title("Percentages of candidates  with \n a certain Gaming Experience")
+plt.subplot(1, 2, 2)
+labels = ['Robotics/Teleoperation \n Expertise', 'NO Robotics/Teleoperation\n  Expertise']
+_, _, autotxts = plt.pie([3, 2], labels =labels, autopct='%1.1f%%', shadow = True, colors=['c', 'y'])
+for autotxt in autotxts:
+    autotxt.set_color('white')
+    autotxt.set_fontsize(25)
+plt.title("Percentages of candidates having \n Robotics/Teleoperation Expertise")
+plt.show()
+
 
 
 
@@ -595,6 +704,29 @@ plt.errorbar(1 , np.mean(workload_C_V), yerr =np.std(workload_C_V), capsize = 8,
 plt.xticks(np.arange(2), ['Vision & Audio', 'Vision'])
 plt.title(r'$\mu$ of # Collisions')
 plt.show()
+
+
+#%%
+driving_exp_path = r"D:\GitHub\MSc Robotics and Computation\unity-with-ros-interface\Graphs\Husky Driving Experience.csv"
+df = pd.read_csv(driving_exp_path, engine='python')
+#print(df.dtypes)
+# print(df["Mental Demand: How mentally demanding was the task?.1"])
+driving_exp_VA = df[["How much did you like driving the Husky with visual feedback only?",
+                  "How much did you like driving the Husky with both visual feedback and auditory cues?",
+                  "How useful do you think are the auditory cues?",
+                  "How useful do you think are the auditory cues for driving around?"]]
+
+plt.rcParams.update({'xtick.labelsize': 17.5})
+
+driving_exp_std = driving_exp_VA.std()
+# driving_exp_VA.plot(kind='bar')
+mean_plot = driving_exp_VA.mean().plot(kind='bar', color =['r', 'b', 'y', 'g'], rot=0, yerr = driving_exp_std, alpha = 0.6, capsize = 10, ecolor = "black")
+mean_plot.set_xticklabels(["How much did you like \n driving the Husky with \n visual feedback only?",
+                           "How much did you like driving \n the Husky with both visual \n feedback and auditory cues?",
+                           "How useful do you think \n are the auditory cues?",
+                           "How useful do you think \n are the auditory cues \n for driving around?"])
+mean_plot.set_ylabel("Avegare Point")
+mean_plot.set_title("Survey of the Husky Driving Experince")
 
 
 
